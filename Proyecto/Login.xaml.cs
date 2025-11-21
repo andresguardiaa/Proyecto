@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using di.proyecto.clase._2025.Backend.Servicios;
+using Proyecto.Backend.Modelo;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +18,10 @@ namespace Proyecto
     /// </summary>
     public partial class Login : Window
     {
+
+        private AndresProyecto2Context _context;
+        private GenericRepository<RolHasPermiso> _rolHasPermisoRepository;
+
         public Login()
         {
             InitializeComponent();

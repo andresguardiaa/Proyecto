@@ -5,115 +5,131 @@
         Title="Login"
         Width="350"
         Height="580"
+        x:Name="LoginWindow"
+        Loaded="LoginWindow_Loaded"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         ResizeMode="NoResize"
         Background="#374151">
 
-    <Grid Margin="40">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2.5*" />
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!-- Logo con título separado -->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <!-- Logo gota con degradado -->
-            <Grid Width="80" Height="100" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon Kind="Excavator" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon.Foreground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#7BC68E" Offset="0"/>
-                            <GradientStop Color="#44C5F5" Offset="1"/>
-                        </LinearGradientBrush>
-                    </materialDesign:PackIcon.Foreground>
-                </materialDesign:PackIcon>
-            </Grid>
-
-            <!-- Texto DROPIUM separado y centrado -->
-            <TextBlock Text="EarthManager"
-                       Foreground="#9CA3AF"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       Margin="0,10,0,0" />
-        </StackPanel>
-
-        <!-- Campos formulario -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <!-- Username -->
-            <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
-                <TextBox materialDesign:HintAssist.Hint="Usuario"
-                         Padding="20,0,0,0"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         FontSize="16"
-                         x:Name="txtUsuario"
-                         BorderThickness="0"
-                         BorderBrush="Transparent"
-                         Background="Transparent"
-                         Foreground="#9CA3AF"
-                         VerticalContentAlignment="Center">
-                    <!--<TextBox.BorderBrush>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#7BC68E" Offset="0"/>
-                            <GradientStop Color="#44C5F5" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBox.BorderBrush>-->
-                </TextBox>
-            </Border>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,0">
+            <materialDesign:PackIcon Kind="WindowMinimize" x:Name="btnMin" Cursor="Hand" MouseLeftButtonUp="btnMin_MouseLeftButtonUp" Foreground="White"/>
+            <materialDesign:PackIcon Kind="WindowMaximize" x:Name="btnMax" Cursor="Hand" MouseLeftButtonUp="btnMax_MouseLeftButtonUp" Foreground="White"/>
+            <materialDesign:PackIcon Kind="WindowClose" x:Name="btnClose" Cursor="Hand" MouseLeftButtonUp="btnClose_MouseLeftButtonUp" Foreground="White"/>
             
-
-            <!-- Password -->
-            <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
-                <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
-                             Padding="20,0,0,0"
-                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                             FontSize="16"
-                             x:Name="passClave"
-                             BorderThickness="0"
-                             BorderBrush="Transparent"
-                             Background="Transparent"
-                             Foreground="#9CA3AF"
-                             VerticalContentAlignment="Center"/>
-            </Border>
-
-            <!-- Botón con esquinas redondeadas mediante ControlTemplate -->
-            <Button Content="Iniciar Sesión"
-                    Height="45"
-                    FontSize="16"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Padding="0"
-                    Margin="0"
-                    x:Name="btnLogin"
-                    Click="btnLogin_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="25"
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                              RecognizesAccessKey="True"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="#7BC68E" Offset="0"/>
-                        <GradientStop Color="#44C5F5" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
         </StackPanel>
+        <Grid Grid.Row="1" Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.5*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-        <!-- Texto 'Forgot your password?' -->
-        <TextBlock Grid.Row="2"
-                   Text="¿Has olvidado la contraseña?"
-                   FontSize="14"
-                   Foreground="#9CA3AF"
-                   HorizontalAlignment="Center"
-                   Margin="0,30,0,0" />
+
+            <!-- Logo con título separado -->
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <!-- Logo gota con degradado -->
+                <Grid Width="80" Height="100" Margin="0,0,0,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Excavator" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <materialDesign:PackIcon.Foreground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#7BC68E" Offset="0"/>
+                                <GradientStop Color="#44C5F5" Offset="1"/>
+                            </LinearGradientBrush>
+                        </materialDesign:PackIcon.Foreground>
+                    </materialDesign:PackIcon>
+                </Grid>
+
+                <!-- Texto DROPIUM separado y centrado -->
+                <TextBlock Text="EarthManager"
+                    Foreground="#9CA3AF"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,0" />
+            </StackPanel>
+
+            <!-- Campos formulario -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <!-- Username -->
+                <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
+                    <TextBox materialDesign:HintAssist.Hint="Usuario"
+                      Padding="20,0,0,0"
+                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                      FontSize="16"
+                      x:Name="txtUsuario"
+                      BorderThickness="0"
+                      BorderBrush="Transparent"
+                      Background="Transparent"
+                      Foreground="#9CA3AF"
+                      VerticalContentAlignment="Center">
+                        <!--<TextBox.BorderBrush>
+                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                         <GradientStop Color="#7BC68E" Offset="0"/>
+                         <GradientStop Color="#44C5F5" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>-->
+                    </TextBox>
+                </Border>
+
+
+                <!-- Password -->
+                <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
+                    <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
+                          Padding="20,0,0,0"
+                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                          FontSize="16"
+                          x:Name="passClave"
+                          BorderThickness="0"
+                          BorderBrush="Transparent"
+                          Background="Transparent"
+                          Foreground="#9CA3AF"
+                          VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Botón con esquinas redondeadas mediante ControlTemplate -->
+                <Button Content="Iniciar Sesión"
+                 Height="45"
+                 FontSize="16"
+                 Foreground="White"
+                 BorderThickness="0"
+                 Cursor="Hand"
+                 Padding="0"
+                 Margin="0"
+                 x:Name="btnLogin"
+                 Click="btnLogin_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                             CornerRadius="25"
+                             SnapsToDevicePixels="True">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           RecognizesAccessKey="True"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#7BC68E" Offset="0"/>
+                            <GradientStop Color="#44C5F5" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+
+            <!-- Texto 'Forgot your password?' -->
+            <TextBlock Grid.Row="2"
+                Text="¿Has olvidado la contraseña?"
+                FontSize="14"
+                Foreground="#9CA3AF"
+                HorizontalAlignment="Center"
+                Margin="0,30,0,0" />
+        </Grid>
     </Grid>
 </Window>

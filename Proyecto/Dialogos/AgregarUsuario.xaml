@@ -1,0 +1,44 @@
+﻿<Window x:Class="Proyecto.Dialogos.AgregarUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto.Dialogos"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        x:Name="diagAgregarUsuario"
+        Loaded="diagAgregarUsuario_Loaded"
+        Title="AgregarUsuario" Height="450" Width="800">
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*" />
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="AliceBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                <TextBlock Text="Agregar Usuarios" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" TextAlignment="Center"/>
+            </Border>
+            <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="40,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+            <TextBox Grid.Row="2" Text="{Binding rolHasPermiso.Usuario}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Usuario*" x:Name="txtusername"/>
+            <TextBox Grid.Row="2" Text="{Binding rolHasPermiso.Password}" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contraseña" x:Name="txtcontrasenia"/>
+            <ComboBox x:Name="cmbUsuario" SelectedItem="{Binding rolHasPermiso.PermisosIdPermisoNavigation}" ItemsSource="{Binding listaPermisos}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="0" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tipo de Permiso"/>
+            <ComboBox x:Name="cmbRol" SelectedItem="{Binding rolHasPermiso.RolIdRolNavigation}" ItemsSource="{Binding listaRoles}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="1" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Rol de usuario"/>
+
+            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                <Button Background="Transparent" x:Name="btnCancelarUsuario" Click="btnCancelarUsuario_Click"  Content="Cancelar" Margin="80,0,20,0" BorderBrush="DarkGray"/>
+                <Button Content="Guardar" Background="AliceBlue" x:Name="btnGuardarUsuario" Click="btnGuardarUsuario_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
+            </StackPanel>
+
+        </Grid>
+
+    </DockPanel>
+</Window>

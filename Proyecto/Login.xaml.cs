@@ -15,15 +15,15 @@ namespace Proyecto
     {
 
         private AndresProyecto2Context _context;
-        //private GenericRepository<RolHasPermiso> _rolHasPermisoRepository;
+        
         private RolHasPermisoRepository _rolHasPermisoRepository;
-        private ILogger<GenericRepository<RolHasPermiso>> _logger;  
+        private readonly MainWindow _mainWindow;
 
-        public Login()
+        public Login(RolHasPermisoRepository rolHasPermisoRepository, MainWindow mainWindow)
         {
             InitializeComponent();
-            _context = new AndresProyecto2Context();
-            _rolHasPermisoRepository = new RolHasPermisoRepository(_context, new LoggerFactory().CreateLogger<GenericRepository<RolHasPermiso>>());
+            _rolHasPermisoRepository = rolHasPermisoRepository;
+            _mainWindow = mainWindow;
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -33,8 +33,7 @@ namespace Proyecto
                 bool isAuthenticated = await _rolHasPermisoRepository.LoginAsync(txtUsuario.Text, passClave.Password);
                 if (isAuthenticated)
                 {
-                    MainWindow ventanaPrincipal = new MainWindow();
-                    ventanaPrincipal.Show();
+                    _mainWindow.Show();
                     this.Close();
 
                 }
@@ -51,15 +50,6 @@ namespace Proyecto
                 MessageBox.Show("Por favor, introduce usuario y clave.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
-        }
-
-        private void LoginWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            _context = new AndresProyecto2Context();
-            _logger = new LoggerFactory().CreateLogger<GenericRepository<RolHasPermiso>>();
-            _rolHasPermisoRepository = new RolHasPermisoRepository(_context, _logger);
-
         }
 
         private void btnMin_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

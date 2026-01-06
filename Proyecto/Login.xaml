@@ -5,8 +5,6 @@
         Title="Login"
         Width="350"
         Height="580"
-        x:Name="LoginWindow"
-        Loaded="LoginWindow_Loaded"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"

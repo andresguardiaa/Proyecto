@@ -99,6 +99,7 @@
                  Cursor="Hand"
                  Padding="0"
                  Margin="0"
+                 IsDefault="True"
                  x:Name="btnLogin"
                  Click="btnLogin_Click">
                     <Button.Template>

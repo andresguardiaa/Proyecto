@@ -6,64 +6,82 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Proyecto"
         mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
-        <Grid DockPanel.Dock="Left" Background="#374151" Width="200" >
-            <StackPanel>
-                <Grid>
-                    <!-- Definimos el titulo del panel -->
-                    <materialDesign:PackIcon Kind="ViewDashboard" Width="15" Height="15" Margin="10 16" Foreground="White"/>
-                    <!-- Ahora utilizamos este control que ns muestra un elemento de la lista -->
-                    <ListBoxItem x:Name="ListViewItemMenu" Content="Dashboard" Padding="37 14" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignListBoxItem}"/>
-                </Grid>
-                <Grid>
-                    <materialDesign:PackIcon Kind="AccountHardHat" Foreground="White" Width="20" Height="20" Margin="8 15" />
-                    <Expander Header="Usuarios" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
-                        <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarUsuario" PreviewMouseLeftButtonUp="AgregarUsuario_PreviewMouseLeftButtonUp"/>
-                            <ListViewItem Content="Editar" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
-                        </ListView>
-                    </Expander>
 
-                </Grid>
-                <Grid>
-                    <materialDesign:PackIcon Kind="AlphaPBox" Foreground="White" Width="20" Height="20" Margin="8 15" />
-                    <Expander Header="Proyectos" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
-                        <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Editar" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
-                        </ListView>
-                    </Expander>
-
-                </Grid>
-                <Grid>
-                    <materialDesign:PackIcon Kind="Excavator" Foreground="White" Width="20" Height="20" Margin="8 15" />
-                    <Expander Header="Máquinas" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
-                        <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Editar" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
-                        </ListView>
-                    </Expander>
-
-                </Grid>
-                <Grid>
-                    <materialDesign:PackIcon Kind="Eye" Foreground="White" Width="20" Height="20" Margin="8 15" />
-                    <Expander Header="Visualizar" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
-                        <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListViewItem Content="Gastos" Padding="40,10,0,10"/>
-                            <ListViewItem Content="Beneficios" Padding="40,10,0,10"/>
-                        </ListView>
-                    </Expander>
-
-                </Grid>
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0" Background="#374151">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0">
+                <materialDesign:PackIcon Kind="WindowMinimize" x:Name="btnMin" Width="20" Height="20" Cursor="Hand" MouseLeftButtonUp="btnMin_MouseLeftButtonUp" Foreground="White"/>
+                <materialDesign:PackIcon Kind="WindowMaximize" x:Name="btnMax" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonUp="btnMax_MouseLeftButtonUp" Foreground="White"/>
+                <materialDesign:PackIcon Kind="WindowClose" x:Name="btnClose" Width="20" Height="20" Cursor="Hand" MouseLeftButtonUp="btnClose_MouseLeftButtonUp" Foreground="White"/>
             </StackPanel>
+        </Grid>
+        <DockPanel Grid.Row="1">
 
-        </Grid>
-        <Grid>
-            
-        </Grid>
-    </DockPanel>
+            <Grid DockPanel.Dock="Left" Background="#374151" Width="200" >
+                <StackPanel>
+                    <Grid>
+                        <materialDesign:PackIcon Kind="ViewDashboard" Width="15" Height="15" Margin="10 16" Foreground="White"/>
+                        <ListBoxItem x:Name="ListViewItemMenu" Content="Dashboard" Padding="37 14" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignListBoxItem}"/>
+                    </Grid>
+                    <Grid>
+                        <materialDesign:PackIcon Kind="AccountHardHat" Foreground="White" Width="20" Height="20" Margin="8 15" />
+                        <Expander Header="Usuarios" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
+                            <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarUsuario" PreviewMouseLeftButtonUp="AgregarUsuario_PreviewMouseLeftButtonUp"/>
+                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
+                            </ListView>
+                        </Expander>
+
+                    </Grid>
+                    <Grid>
+                        <materialDesign:PackIcon Kind="AlphaPBox" Foreground="White" Width="20" Height="20" Margin="8 15" />
+                        <Expander Header="Proyectos" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
+                            <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
+                            </ListView>
+                        </Expander>
+
+                    </Grid>
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Excavator" Foreground="White" Width="20" Height="20" Margin="8 15" />
+                        <Expander Header="Máquinas" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
+                            <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
+                            </ListView>
+                        </Expander>
+
+                    </Grid>
+                    <Grid>
+                        <materialDesign:PackIcon Kind="Eye" Foreground="White" Width="20" Height="20" Margin="8 15" />
+                        <Expander Header="Visualizar" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
+                            <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListViewItem Content="Gastos" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Beneficios" Padding="40,10,0,10"/>
+                            </ListView>
+                        </Expander>
+
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+            <Grid>
+
+            </Grid>
+        </DockPanel>
+    </Grid>
+
 </Window>

@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 
-namespace Ejercicio7.MVVM.Base
+namespace Proyecto.MVVM.Base
 {
     public abstract class ValidatableViewModel : BaseViewModel, IDataErrorInfo
     {
@@ -22,7 +22,7 @@ namespace Ejercicio7.MVVM.Base
         {
             get
             {
-                var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                var validationResults = new List<ValidationResult>();
 
                 if (Validator.TryValidateProperty(
                         GetType().GetProperty(columnName).GetValue(this)

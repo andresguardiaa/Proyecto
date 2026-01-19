@@ -1,6 +1,6 @@
-﻿using Ejercicio7.MVVM.Base;
-using Proyecto.Backend.Modelo;
+﻿using Proyecto.Backend.Modelo;
 using Proyecto.Backend.Repositorios;
+using Proyecto.MVVM.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

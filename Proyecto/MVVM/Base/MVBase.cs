@@ -1,9 +1,9 @@
-﻿using di.proyecto.clase._2025.Backend.Servicios;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
+using Proyecto.Backend.Repositorios;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Ejercicio7.MVVM.Base
+namespace Proyecto.MVVM.Base
 {
     public class MVBase : ValidatableViewModel
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Proyecto.Backend.Modelo;
 using System.Linq.Expressions;
 
-namespace di.proyecto.clase._2025.Backend.Servicios
+namespace Proyecto.Backend.Repositorios
 {
     /// <summary>
     /// Repositorio genérico que implementa <see cref="IGenericRepository{T}"/> para EF Core.

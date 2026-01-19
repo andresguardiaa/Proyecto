@@ -1,8 +1,4 @@
-﻿using Castle.Core.Logging;
-using di.proyecto.clase._2025.Backend.Servicios;
-using Microsoft.Extensions.Logging;
-using Proyecto.Backend.Modelo;
-using MahApps.Metro.Controls;
+﻿using Proyecto.Backend.Modelo;
 using Proyecto.Backend.Repositorios;
 using System.Windows;
 

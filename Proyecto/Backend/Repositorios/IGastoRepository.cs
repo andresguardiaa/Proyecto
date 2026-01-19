@@ -2,7 +2,7 @@
 
 namespace Proyecto.Backend.Repositorios
 {
-     interface IPermisoRepository : IGenericRepository<Permiso>
+    interface IGastoRepository : IGenericRepository<Gasto>
     {
     }
 }

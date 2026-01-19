@@ -69,8 +69,8 @@
                         <materialDesign:PackIcon Kind="Eye" Foreground="White" Width="20" Height="20" Margin="8 15" />
                         <Expander Header="Visualizar" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
                             <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                <ListViewItem Content="Gastos" Padding="40,10,0,10"/>
-                                <ListViewItem Content="Beneficios" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Gastos" Padding="40,10,0,10" x:Name="btnListarGastos" Cursor="Hand" MouseLeftButtonUp="btnListarGastos_MouseLeftButtonUp"/>
+                                <ListViewItem Content="Ingresos" Padding="40,10,0,10" x:Name="btnListarIngresos" Cursor="Hand" MouseLeftButtonUp="btnListarIngresos_MouseLeftButtonUp"/>
                             </ListView>
                         </Expander>
 
@@ -78,7 +78,7 @@
                 </StackPanel>
 
             </Grid>
-            <Grid>
+            <Grid x:Name="panelCentral">
 
             </Grid>
         </DockPanel>

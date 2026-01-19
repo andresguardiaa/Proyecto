@@ -1,10 +1,10 @@
-﻿using di.proyecto.clase._2025.Backend.Servicios;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Proyecto.Backend.Modelo;
 using Proyecto.Backend.Repositorios;
 using Proyecto.Dialogos;
 using Proyecto.MVVM;
+using Proyecto.UC;
 using System.Windows;
 
 namespace Proyecto
@@ -50,18 +50,26 @@ namespace Proyecto
             services.AddScoped<IGenericRepository<RolHasPermiso>, RolHasPermisoRepository>();
             services.AddScoped<IGenericRepository<Permiso>, PermisoRepository>();
             services.AddScoped<IGenericRepository<Rol>, RolRepository>();  
+            services.AddScoped<IGenericRepository<Gasto>, GastoRepository>();
+            services.AddScoped<IGenericRepository<Factura>, FacturaRepository>();
 
             // Registramos los servicios específicos
             services.AddScoped<RolHasPermisoRepository>();
             services.AddScoped<PermisoRepository>();
             services.AddScoped<RolRepository>();
+            services.AddScoped<GastoRepository>();
+            services.AddScoped<FacturaRepository>();
 
             // Registramos las interfaces de usuario
             //services.AddTransient<Login>();
             services.AddTransient<AgregarUsuario>();
-            
-            
+            services.AddTransient<UCVerGastos>();
+            services.AddTransient<UCVerIngresos>();
+
+
             services.AddTransient<MVAgregarUsuario>();
+            services.AddTransient<MVGasto>();  
+            services.AddTransient<MVFactura>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

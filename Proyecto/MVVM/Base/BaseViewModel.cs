@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace Ejercicio7.MVVM.Base
+namespace Proyecto.MVVM.Base
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

@@ -35,7 +35,7 @@
 
             <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Background="Transparent" x:Name="btnCancelarUsuario" Click="btnCancelarUsuario_Click"  Content="Cancelar" Margin="80,0,20,0" BorderBrush="DarkGray"/>
-                <Button Content="Guardar" Background="AliceBlue" x:Name="btnGuardarUsuario" Click="btnGuardarUsuario_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
+                <Button Content="Guardar" Background="#374151" Foreground="White" x:Name="btnGuardarUsuario" Click="btnGuardarUsuario_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
             </StackPanel>
 
         </Grid>

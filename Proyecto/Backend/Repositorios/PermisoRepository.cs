@@ -1,5 +1,4 @@
-﻿using di.proyecto.clase._2025.Backend.Servicios;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Proyecto.Backend.Modelo;
 
 namespace Proyecto.Backend.Repositorios

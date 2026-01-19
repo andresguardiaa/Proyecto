@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace di.proyecto.clase._2025.Backend.Servicios
+namespace Proyecto.Backend.Repositorios
 {
     /// <summary>
     /// Contrato de repositorio genérico para operaciones CRUD comunes usando Entity Framework Core.

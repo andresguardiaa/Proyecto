@@ -9,7 +9,7 @@ namespace Proyecto.Backend.Modelo;
 [Table("trabajadores")]
 [Index("Dni", Name = "dni_UNIQUE", IsUnique = true)]
 [Index("RolIdRol", Name = "fk_trabajadores_rol1_idx")]
-public partial class Trabajadore
+public partial class Trabajadores
 {
     [Key]
     [Column("idTrabajador")]

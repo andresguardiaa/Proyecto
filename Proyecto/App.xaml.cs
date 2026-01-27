@@ -42,6 +42,7 @@ namespace Proyecto
             // En primer lugar registramos la ventana principal
             services.AddSingleton<MainWindow>();
             services.AddTransient<Login>();
+            services.AddTransient<AgregarUsuario>();
             //services.AddTransient<Window1>();
             // A continuación, registramos los repositorios específicos
             // Lo hacemos con AddScoped para que se cree una nueva instancia
@@ -52,6 +53,7 @@ namespace Proyecto
             services.AddScoped<IGenericRepository<Rol>, RolRepository>();  
             services.AddScoped<IGenericRepository<Gasto>, GastoRepository>();
             services.AddScoped<IGenericRepository<Factura>, FacturaRepository>();
+            services.AddScoped<IGenericRepository<Trabajadores>, TrabajadorRepository>();
 
             // Registramos los servicios específicos
             services.AddScoped<RolHasPermisoRepository>();
@@ -59,6 +61,7 @@ namespace Proyecto
             services.AddScoped<RolRepository>();
             services.AddScoped<GastoRepository>();
             services.AddScoped<FacturaRepository>();
+            services.AddScoped<TrabajadorRepository>();
 
             // Registramos las interfaces de usuario
             //services.AddTransient<Login>();

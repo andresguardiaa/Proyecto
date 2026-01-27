@@ -37,7 +37,7 @@ public partial class AndresProyecto2Context : DbContext
 
     public virtual DbSet<RolHasPermiso> RolHasPermisos { get; set; }
 
-    public virtual DbSet<Trabajadore> Trabajadores { get; set; }
+    public virtual DbSet<Trabajadores> Trabajadores { get; set; }
 
     public virtual DbSet<Trabajo> Trabajos { get; set; }
 
@@ -151,7 +151,7 @@ public partial class AndresProyecto2Context : DbContext
                 .HasConstraintName("fk_rol_has_permisos_rol1");
         });
 
-        modelBuilder.Entity<Trabajadore>(entity =>
+        modelBuilder.Entity<Trabajadores>(entity =>
         {
             entity.HasKey(e => e.IdTrabajador).HasName("PRIMARY");
 

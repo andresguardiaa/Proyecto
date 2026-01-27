@@ -21,5 +21,5 @@ public partial class Rol
     public virtual ICollection<RolHasPermiso> RolHasPermisos { get; set; } = new List<RolHasPermiso>();
 
     [InverseProperty("RolIdRolNavigation")]
-    public virtual ICollection<Trabajadore> Trabajadores { get; set; } = new List<Trabajadore>();
+    public virtual ICollection<Trabajadores> Trabajadores { get; set; } = new List<Trabajadores>();
 }

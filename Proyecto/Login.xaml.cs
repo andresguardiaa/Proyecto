@@ -10,15 +10,15 @@ namespace Proyecto
     public partial class Login : Window
     {
 
-        private AndresProyecto2Context _context;
-        
-        private RolHasPermisoRepository _rolHasPermisoRepository;
+        //private AndresProyecto2Context _context;
+
+        private TrabajadorRepository _trabajadorRepository;
         private readonly MainWindow _mainWindow;
 
-        public Login(RolHasPermisoRepository rolHasPermisoRepository, MainWindow mainWindow)
+        public Login(TrabajadorRepository trabajadorRepository, MainWindow mainWindow)
         {
             InitializeComponent();
-            _rolHasPermisoRepository = rolHasPermisoRepository;
+            _trabajadorRepository = trabajadorRepository;
             _mainWindow = mainWindow;
         }
 
@@ -26,9 +26,10 @@ namespace Proyecto
         {
             if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(passClave.Password))
             {
-                bool isAuthenticated = await _rolHasPermisoRepository.LoginAsync(txtUsuario.Text, passClave.Password);
+                bool isAuthenticated = await _trabajadorRepository.LoginAsync(txtUsuario.Text, passClave.Password);
                 if (isAuthenticated)
                 {
+
                     _mainWindow.Show();
                     this.Close();
 
@@ -38,7 +39,7 @@ namespace Proyecto
                     MessageBox.Show("Usuario o clave incorrectos.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
-               
+
 
             }
             else
@@ -58,7 +59,7 @@ namespace Proyecto
         private void btnMax_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
-            if(this.WindowState == WindowState.Normal)
+            if (this.WindowState == WindowState.Normal)
             {
                 this.WindowState = WindowState.Maximized;
             }

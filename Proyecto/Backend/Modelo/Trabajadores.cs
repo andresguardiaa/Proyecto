@@ -50,6 +50,14 @@ public partial class Trabajadores
     [StringLength(45)]
     public string? Cp { get; set; }
 
+    [Column("usuario")]
+    [StringLength(45)]
+    public string? Usuario { get; set; }
+
+    [Column("password")]
+    [StringLength(255)] 
+    public string? Password { get; set; }
+
     [Column("rol_idRol")]
     public int RolIdRol { get; set; }
 

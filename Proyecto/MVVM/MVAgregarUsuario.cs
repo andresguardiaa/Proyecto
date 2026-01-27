@@ -20,50 +20,48 @@ namespace Proyecto.MVVM
         /// </summary>
         /// 
 
-        private RolHasPermiso _rolHasPermiso;
-        private RolHasPermisoRepository _rolHasPermisoRepository;
+        private Trabajadores _trabajador;
+        private TrabajadorRepository _trabajadorRepository;
         private RolRepository _rolRepository;
-        private PermisoRepository _permisoRepository;
 
-        private List<Permiso> _listaPermisos;
+        
         private List<Rol> _listaRoles;
 
         public List<Rol> listaRoles => _listaRoles;
-        public List<Permiso> listaPermisos => _listaPermisos;
+        
 
-        public RolHasPermiso rolHasPermiso
+        public Trabajadores trabajador
         {
-            get => _rolHasPermiso;
-            set => SetProperty(ref _rolHasPermiso, value);
+            get => _trabajador;
+            set => SetProperty(ref _trabajador, value);
         }
+        
 
-        public MVAgregarUsuario(RolHasPermisoRepository rolHasPermisoRepository, RolRepository rolRepository, PermisoRepository permisoRepository)
+        public MVAgregarUsuario(TrabajadorRepository trabajadorRepository, RolRepository rolRepository)
         {
-            _rolHasPermisoRepository = rolHasPermisoRepository;
+            _trabajadorRepository = trabajadorRepository;
             _rolRepository = rolRepository;
-            _permisoRepository = permisoRepository;
-            rolHasPermiso = new RolHasPermiso();
+            trabajador = new Trabajadores();
         }
 
         public async Task Inicializa()
         {
             _listaRoles = await GetAllAsync<Rol>(_rolRepository);
-            _listaPermisos = await GetAllAsync<Permiso>(_permisoRepository);
         }
 
         public async Task GuardarUsuario()
         {
 
-            var usuarioExistente = await _rolHasPermisoRepository.FirstOrDefaultAsync(x => x.Usuario == rolHasPermiso.Usuario);
+            var usuarioExistente = await _trabajadorRepository.FirstOrDefaultAsync(x => x.Usuario == trabajador.Usuario);
             try
             {
                 if (usuarioExistente == null)
                 {
-                    await _rolHasPermisoRepository.AddAsync(rolHasPermiso);
+                    await _trabajadorRepository.AddAsync(trabajador);
                 }
                 else
                 {
-                    await _rolHasPermisoRepository.UpdateAsync(rolHasPermiso);
+                    await _trabajadorRepository.UpdateAsync(trabajador);
                 }
                 SnackbarMessageQueue.Enqueue("Usuario guardado correctamente.");
             }

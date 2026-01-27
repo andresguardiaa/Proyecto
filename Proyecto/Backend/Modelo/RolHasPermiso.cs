@@ -20,13 +20,14 @@ public partial class RolHasPermiso
     [Column("rol_idRol")]
     public int RolIdRol { get; set; }
 
-    [Column("usuario")]
+    /*[Column("usuario")]
     [StringLength(45)]
     public string? Usuario { get; set; }
 
     [Column("password")]
     [StringLength(45)]
     public string? Password { get; set; }
+    */
 
     [ForeignKey("PermisosIdPermiso")]
     [InverseProperty("RolHasPermisos")]

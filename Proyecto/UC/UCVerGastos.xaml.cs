@@ -33,5 +33,16 @@ namespace Proyecto.UC
             await _mVGasto.Inicializa();
             this.DataContext = _mVGasto;
         }
+
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            _mVGasto.LimpiarFiltro();
+        }
+
+        private void btnFiltrar_Click(object sender, RoutedEventArgs e)
+        {
+            _mVGasto.Filtrar();
+        }
     }
 }

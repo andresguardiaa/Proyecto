@@ -10,10 +10,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <TextBlock Text="Listado de Ingresos" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+            <StackPanel>
+                <TextBlock Text="Listado de ingresos" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Ver desde:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+                    <DatePicker SelectedDate="{Binding FechaFiltro}" Width="150" Margin="0,0,10,0" />
+
+                    <Button Content="Filtrar" Background="#374151" Foreground="White" BorderBrush="Transparent" x:Name="btnFiltrar" Click="btnFiltrar_Click" Margin="0,0,10,0" Width="80"/>
+                    <Button Content="Limpiar" BorderBrush="#374151" Foreground="#374151" x:Name="btnLimpiar" Click="btnLimpiar_Click" Style="{StaticResource MaterialDesignOutlinedButton}" Width="80"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
         <Grid>
-            <DataGrid ItemsSource="{Binding facturaList}"
+            <DataGrid ItemsSource="{Binding listaFacturasFiltro}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   ColumnWidth="*">

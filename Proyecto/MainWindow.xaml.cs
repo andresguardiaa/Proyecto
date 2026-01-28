@@ -65,5 +65,10 @@ namespace Proyecto
             if (panelCentral != null) panelCentral.Children.Clear();
             panelCentral.Children.Add(_uCVerIngresos);
         }
+
+        private void ListViewItemMenu_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            panelCentral.Children.Clear();
+        }
     }
 }

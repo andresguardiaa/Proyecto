@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Proyecto.MVVM
 {
@@ -15,9 +16,23 @@ namespace Proyecto.MVVM
         private GastoRepository _gastoRepository;
 
         private List<Gasto> _gastoList;
+        private ListCollectionView _listaGastosFiltro;
+        private DateTime? _fechaFiltro;
 
 
-        public List<Gasto> gastoList => _gastoList;
+        
+
+        public ListCollectionView listaGastosFiltro
+        {
+            get => _listaGastosFiltro;
+            set => SetProperty(ref _listaGastosFiltro, value);
+        }
+        
+        public DateTime? FechaFiltro
+        {
+            get => _fechaFiltro;
+            set => SetProperty(ref _fechaFiltro, value);
+        }
 
         public MVGasto(GastoRepository gastoRepository)
         {
@@ -28,6 +43,37 @@ namespace Proyecto.MVVM
         public async Task Inicializa()
         {
             _gastoList = await GetAllAsync<Gasto>(_gastoRepository);
+            listaGastosFiltro = new ListCollectionView(_gastoList);
+        }
+
+        private bool PredicadoFiltro(object item)
+        {
+            if (item is Gasto gasto)
+            {
+                // Si la fecha filtro es nula, mostramos todo, si no, aplicamos la condición
+                if (FechaFiltro == null) return true;
+
+                return gasto.Fecha >= FechaFiltro.Value;
+            }
+            return false;
+        }
+
+        public void Filtrar()
+        {
+            if(listaGastosFiltro != null)
+            {
+                listaGastosFiltro.Filter = PredicadoFiltro;
+            }
+        }
+
+
+        public void LimpiarFiltro()
+        {
+            FechaFiltro = null;
+            if(listaGastosFiltro != null)
+            {
+                listaGastosFiltro.Filter = null;
+            }
         }
 
     }

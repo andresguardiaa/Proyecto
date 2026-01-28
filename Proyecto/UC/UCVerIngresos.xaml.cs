@@ -33,5 +33,15 @@ namespace Proyecto.UC
             await _mVFactura.Inicializa();
             this.DataContext = _mVFactura;
         }
+
+        private void btnFiltrar_Click(object sender, RoutedEventArgs e)
+        {
+            _mVFactura.Filtrar();
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            _mVFactura.LimpiarFiltro();
+        }
     }
 }

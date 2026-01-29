@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.MVVM
 {
-    public class MVAgregarUsuario : MVBase
+    public class MVTrabajador : MVBase
     {
 
         ///Hereda de mvbase, para crear la lista y gestionar la validación
@@ -37,7 +37,7 @@ namespace Proyecto.MVVM
         }
         
 
-        public MVAgregarUsuario(TrabajadorRepository trabajadorRepository, RolRepository rolRepository)
+        public MVTrabajador(TrabajadorRepository trabajadorRepository, RolRepository rolRepository)
         {
             _trabajadorRepository = trabajadorRepository;
             _rolRepository = rolRepository;

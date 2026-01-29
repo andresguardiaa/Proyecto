@@ -20,8 +20,8 @@ namespace Proyecto.Dialogos
     /// </summary>
     public partial class AgregarUsuario : Window
     {
-        private MVAgregarUsuario _MVAgregarUsuario;
-        public AgregarUsuario(MVAgregarUsuario mVAgregarUsuario)
+        private MVTrabajador _MVAgregarUsuario;
+        public AgregarUsuario(MVTrabajador mVAgregarUsuario)
         {
             InitializeComponent();
             _MVAgregarUsuario = mVAgregarUsuario;

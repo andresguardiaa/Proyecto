@@ -42,7 +42,7 @@ namespace Proyecto
             // En primer lugar registramos la ventana principal
             services.AddSingleton<MainWindow>();
             services.AddTransient<Login>();
-            services.AddTransient<AgregarUsuario>();
+            //services.AddTransient<AgregarUsuario>();
             //services.AddTransient<Window1>();
             // A continuación, registramos los repositorios específicos
             // Lo hacemos con AddScoped para que se cree una nueva instancia
@@ -70,7 +70,7 @@ namespace Proyecto
             services.AddTransient<UCVerIngresos>();
 
 
-            services.AddTransient<MVAgregarUsuario>();
+            services.AddTransient<MVTrabajador>();
             services.AddTransient<MVGasto>();  
             services.AddTransient<MVFactura>();
         }

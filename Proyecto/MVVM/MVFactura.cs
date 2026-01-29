@@ -44,12 +44,12 @@ namespace Proyecto.MVVM
 
         private bool PredicadoFiltro(object item)
         {
-            if (item is Gasto gasto)
+            if (item is Factura factura)
             {
                 // Si la fecha filtro es nula, mostramos todo, si no, aplicamos la condición
                 if (FechaFacturaFiltro == null) return true;
 
-                return gasto.Fecha >= FechaFacturaFiltro.Value;
+                return factura.Fecha >= FechaFacturaFiltro.Value;
             }
             return false;
         }

@@ -14,11 +14,7 @@ namespace Proyecto.MVVM
 
         ///Hereda de mvbase, para crear la lista y gestionar la validación
 
-        /// <summary>
-        /// Objeto modelo de articulo que estamos gestionando
-        /// vinculado a la lista para mostrar y editar los datos
-        /// </summary>
-        /// 
+        
 
         private Trabajadores _trabajador;
         private TrabajadorRepository _trabajadorRepository;

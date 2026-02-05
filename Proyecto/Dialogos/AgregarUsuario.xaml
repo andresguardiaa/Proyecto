@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         x:Name="diagAgregarUsuario"
         Loaded="diagAgregarUsuario_Loaded"
-        Title="AgregarUsuario" Height="550" Width="800">
+        Title="AgregarUsuario" Height="650" Width="800">
     <DockPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -17,8 +17,11 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="15*"/>
-                <RowDefinition Height="20*"/>
                 <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
@@ -28,12 +31,22 @@
                 <TextBlock Text="Agregar Usuarios" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" TextAlignment="Center"/>
             </Border>
             <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="40,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
-            <TextBox Grid.Row="2" Text="{Binding rolHasPermiso.Usuario}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Usuario*" x:Name="txtusername"/>
-            <TextBox Grid.Row="2" Text="{Binding rolHasPermiso.Password}" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contraseña" x:Name="txtcontrasenia"/>
-            <!--<ComboBox x:Name="cmbUsuario" SelectedItem="{Binding rolHasPermiso.PermisosIdPermisoNavigation}" ItemsSource="{Binding listaPermisos}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="0" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tipo de Permiso"/>-->
-            <ComboBox x:Name="cmbRol" SelectedItem="{Binding rolHasPermiso.RolIdRolNavigation}" ItemsSource="{Binding listaRoles}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="0" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Rol de usuario"/>
+            <TextBox Grid.Row="2" Text="{Binding trabajador.Usuario}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Usuario*" x:Name="txtusername"/>
+            <TextBox Grid.Row="2" Text="{Binding trbajador.Password}" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contraseña" x:Name="txtcontrasenia"/>
+            <ComboBox x:Name="cmbRol" SelectedItem="{Binding trabajador.RolIdRolNavigation}" ItemsSource="{Binding listaRoles}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="0" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Rol de usuario"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding trabajador.Estado}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Estado*"  />
+            <TextBox Grid.Row="4" Grid.Column="0" Text="{Binding trabajador.Nombre}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre*"  />
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding trabajador.Dni}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="DNI*"  />
+            <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding trabajador.Apellido1}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Primer Apellido"  />
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding trabajador.Apellido2}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Segundo Apellido"  />
+            <TextBox Grid.Row="6" Grid.Column="0" Text="{Binding trabajador.Telefono}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nº de Teléfono"  />
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding trabajador.Calle}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Dirección"  />
+            <TextBox Grid.Row="7" Grid.Column="0" Text="{Binding trabajador.Ciudad}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Ciudad"  />
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding trabajador.Cp}"  Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Código Postal"  />
+            
 
-            <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+
+            <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Background="Transparent" x:Name="btnCancelarUsuario" Click="btnCancelarUsuario_Click"  Content="Cancelar" Margin="80,0,20,0" BorderBrush="DarkGray"/>
                 <Button Content="Guardar" Background="#374151" Foreground="White" x:Name="btnGuardarUsuario" Click="btnGuardarUsuario_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
             </StackPanel>

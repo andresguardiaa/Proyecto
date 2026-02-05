@@ -42,7 +42,7 @@ namespace Proyecto.MVVM
 
         public async Task Inicializa()
         {
-            _gastoList = await GetAllAsync<Gasto>(_gastoRepository);
+            _gastoList = await _gastoRepository.GetGastosCompletosAsync();
             listaGastosFiltro = new ListCollectionView(_gastoList);
         }
 

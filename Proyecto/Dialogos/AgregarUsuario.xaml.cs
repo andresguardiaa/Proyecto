@@ -38,12 +38,12 @@ namespace Proyecto.Dialogos
             DialogResult = false;
         }
 
-        private void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
         {
 
             try
             {
-                _MVAgregarUsuario.GuardarUsuario();
+                await _MVAgregarUsuario.GuardarUsuario();
                 DialogResult = true;
             }
             catch (Exception ex)

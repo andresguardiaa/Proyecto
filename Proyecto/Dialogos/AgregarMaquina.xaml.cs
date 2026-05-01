@@ -16,39 +16,38 @@ using System.Windows.Shapes;
 namespace Proyecto.Dialogos
 {
     /// <summary>
-    /// Lógica de interacción para AgregarUsuario.xaml
+    /// Lógica de interacción para AgregarMaquina.xaml
     /// </summary>
-    public partial class AgregarUsuario : Window
+    public partial class AgregarMaquina : Window
     {
-        private MVTrabajador _MVAgregarUsuario;
-        public AgregarUsuario(MVTrabajador mVAgregarUsuario)
+        private MVMaquina _MVMaquina;
+        public AgregarMaquina(MVMaquina mVMaquina)
         {
             InitializeComponent();
-            _MVAgregarUsuario = mVAgregarUsuario;
+            _MVMaquina = mVMaquina;
         }
 
-        private async void diagAgregarUsuario_Loaded(object sender, RoutedEventArgs e)
+        private async void diagAgregarMaquina_Loaded(object sender, RoutedEventArgs e)
         {
-            await _MVAgregarUsuario.Inicializa();
-            DataContext = _MVAgregarUsuario;
+            await _MVMaquina.Inicializa();
+            DataContext = _MVMaquina;
         }
 
-        private void btnCancelarUsuario_Click(object sender, RoutedEventArgs e)
+        private void btnCancelarMaquina_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
         }
 
-        private async void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarMaquina_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
-                await _MVAgregarUsuario.GuardarUsuario();
+                await _MVMaquina.GuardarMaquina();
                 DialogResult = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al Guardar el Usuario");
+                MessageBox.Show("Error al Guardar La Máquina", ex.Message);
             }
         }
     }

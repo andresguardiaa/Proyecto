@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Proyecto.Backend.Modelo;
 
 [Table("maquina")]
+[Index("IdEstado", Name = "fk_maquina_estado")]
+[Index("IdModelo", Name = "fk_maquina_modelo")]
 public partial class Maquina
 {
     [Key]
@@ -23,11 +25,19 @@ public partial class Maquina
     [Column("capacidad")]
     public int? Capacidad { get; set; }
 
-    [InverseProperty("MaquinaIdMaquinaNavigation")]
-    public virtual Estado? Estado { get; set; }
+    [Column("idModelo")]
+    public int? IdModelo { get; set; }
 
-    [InverseProperty("MaquinaIdMaquinaNavigation")]
-    public virtual Modelo? Modelo { get; set; }
+    [Column("idEstado")]
+    public int? IdEstado { get; set; }
+
+    [ForeignKey("IdEstado")]
+    [InverseProperty("Maquinas")]
+    public virtual Estado? IdEstadoNavigation { get; set; }
+
+    [ForeignKey("IdModelo")]
+    [InverseProperty("Maquinas")]
+    public virtual Modelo? IdModeloNavigation { get; set; }
 
     [InverseProperty("MaquinaIdMaquinaNavigation")]
     public virtual ICollection<Trabajo> Trabajos { get; set; } = new List<Trabajo>();

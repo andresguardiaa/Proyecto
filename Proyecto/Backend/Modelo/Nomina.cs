@@ -28,5 +28,5 @@ public partial class Nomina
 
     [ForeignKey("TrabajadoresIdTrabajador")]
     [InverseProperty("Nominas")]
-    public virtual Trabajadores TrabajadoresIdTrabajadorNavigation { get; set; } = null!;
+    public virtual Trabajadore TrabajadoresIdTrabajadorNavigation { get; set; } = null!;
 }

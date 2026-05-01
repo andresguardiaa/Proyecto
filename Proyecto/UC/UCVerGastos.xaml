@@ -30,7 +30,7 @@
                       ColumnWidth="*">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Cantidad (€)" Binding="{Binding Cantidad}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Máquina" Binding="{Binding NombreModelo}" IsReadOnly="True"/>
                     <DataGridTemplateColumn Header="Fecha">
                         <DataGridTemplateColumn.CellTemplate>

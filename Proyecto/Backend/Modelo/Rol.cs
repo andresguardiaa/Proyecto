@@ -18,8 +18,9 @@ public partial class Rol
     public string? Nombre { get; set; }
 
     [InverseProperty("RolIdRolNavigation")]
-    public virtual ICollection<RolHasPermiso> RolHasPermisos { get; set; } = new List<RolHasPermiso>();
+    public virtual ICollection<Trabajadore> Trabajadores { get; set; } = new List<Trabajadore>();
 
-    [InverseProperty("RolIdRolNavigation")]
-    public virtual ICollection<Trabajadores> Trabajadores { get; set; } = new List<Trabajadores>();
+    [ForeignKey("RolIdRol")]
+    [InverseProperty("RolIdRols")]
+    public virtual ICollection<Permiso> PermisosIdPermisos { get; set; } = new List<Permiso>();
 }

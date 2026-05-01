@@ -30,7 +30,7 @@
             <Border Background="#374151" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
                 <TextBlock Text="Agregar Usuarios" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" TextAlignment="Center"/>
             </Border>
-            <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="40,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+            <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
             <TextBox Grid.Row="2" Text="{Binding trabajador.Usuario}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Usuario*" x:Name="txtusername"/>
             <TextBox Grid.Row="2" Text="{Binding trbajador.Password}" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Contraseña" x:Name="txtcontrasenia"/>
             <ComboBox x:Name="cmbRol" SelectedItem="{Binding trabajador.RolIdRolNavigation}" ItemsSource="{Binding listaRoles}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="0" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Rol de usuario"/>

@@ -37,7 +37,7 @@
                         <Expander Header="Usuarios" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
                             <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarUsuario" PreviewMouseLeftButtonUp="AgregarUsuario_PreviewMouseLeftButtonUp"/>
-                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Listado" Padding="40,10,0,10"/>
                                 <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
                             </ListView>
                         </Expander>
@@ -47,8 +47,8 @@
                         <materialDesign:PackIcon Kind="AlphaPBox" Foreground="White" Width="20" Height="20" Margin="8 15" />
                         <Expander Header="Proyectos" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
                             <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
-                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarProyecto" PreviewMouseLeftButtonUp="AgregarProyecto_PreviewMouseLeftButtonUp"/>
+                                <ListViewItem Content="Listado" Padding="40,10,0,10"/>
                                 <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
                             </ListView>
                         </Expander>
@@ -58,8 +58,8 @@
                         <materialDesign:PackIcon Kind="Excavator" Foreground="White" Width="20" Height="20" Margin="8 15" />
                         <Expander Header="Máquinas" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
                             <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                <ListViewItem Content="Añadir" Padding="40,10,0,10"/>
-                                <ListViewItem Content="Editar" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarMaquina" PreviewMouseLeftButtonUp="AgregarMaquina_PreviewMouseLeftButtonUp"/>
+                                <ListViewItem Content="Listado" Padding="40,10,0,10"/>
                                 <ListViewItem Content="Borrar" Padding="40,10,0,10"/>
                             </ListView>
                         </Expander>

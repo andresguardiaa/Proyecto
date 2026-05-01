@@ -48,31 +48,48 @@ namespace Proyecto
             // Lo hacemos con AddScoped para que se cree una nueva instancia
             // de cada repositorio por cada petición
             // Esto es útil para evitar problemas de concurrencia
+            // Además, registramos cada interfaz de repositorio específico para cada entidad
             services.AddScoped<IGenericRepository<RolHasPermiso>, RolHasPermisoRepository>();
             services.AddScoped<IGenericRepository<Permiso>, PermisoRepository>();
             services.AddScoped<IGenericRepository<Rol>, RolRepository>();  
             services.AddScoped<IGenericRepository<Gasto>, GastoRepository>();
             services.AddScoped<IGenericRepository<Factura>, FacturaRepository>();
-            services.AddScoped<IGenericRepository<Trabajadores>, TrabajadorRepository>();
+            services.AddScoped<IGenericRepository<Trabajadore>, TrabajadorRepository>();
+            services.AddScoped<IGenericRepository<Proyecto.Backend.Modelo.Proyecto>, ProyectoRepository>();
+            services.AddScoped<IGenericRepository<Cliente>, ClienteRepository>();
+            services.AddScoped<IGenericRepository<Maquina>, MaquinaRepository>();
+            services.AddScoped<IGenericRepository<Modelo>, ModeloRepository>();
+            services.AddScoped<IGenericRepository<Estado>, EstadoRepository>();
 
-            // Registramos los servicios específicos
+            // Repositorios específicos para cada entidad, si es necesario
             services.AddScoped<RolHasPermisoRepository>();
             services.AddScoped<PermisoRepository>();
             services.AddScoped<RolRepository>();
             services.AddScoped<GastoRepository>();
             services.AddScoped<FacturaRepository>();
             services.AddScoped<TrabajadorRepository>();
+            services.AddScoped<ProyectoRepository>();
+            services.AddScoped<ClienteRepository>();
+            services.AddScoped<MaquinaRepository>();
+            services.AddScoped<ModeloRepository>();
+            services.AddScoped<EstadoRepository>();
 
             // Registramos las interfaces de usuario
-            //services.AddTransient<Login>();
             services.AddTransient<AgregarUsuario>();
+            services.AddTransient<AgregarProyecto>();
+            services.AddTransient<AgregarMaquina>();
             services.AddTransient<UCVerGastos>();
             services.AddTransient<UCVerIngresos>();
+            services.AddTransient<UCListadoUsuarios>();
+           
 
-
+            // ViewModels
             services.AddTransient<MVTrabajador>();
             services.AddTransient<MVGasto>();  
             services.AddTransient<MVFactura>();
+            services.AddTransient<MVProyecto>();
+            services.AddTransient<MVMaquina>();
+
         }
 
         protected override void OnStartup(StartupEventArgs e)

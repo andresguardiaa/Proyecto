@@ -20,7 +20,7 @@ namespace Proyecto.Backend.Repositorios
                 // NOTA: Verifica en tu archivo Gasto.cs si se llama "Maquinas" o "MaquinaIdMaquinas"
                 .Include(g => g.MaquinaIdMaquinas)
                     // 2. Y luego cargamos los modelos de esas máquinas
-                    .ThenInclude(m => m.Modelo)
+                    .ThenInclude(m => m.IdModeloNavigation)
                 .ToListAsync();
         }
 

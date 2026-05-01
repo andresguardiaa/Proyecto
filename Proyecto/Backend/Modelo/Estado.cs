@@ -10,14 +10,13 @@ namespace Proyecto.Backend.Modelo;
 public partial class Estado
 {
     [Key]
-    [Column("maquina_idMaquina")]
-    public int MaquinaIdMaquina { get; set; }
+    [Column("idEstado")]
+    public int IdEstado { get; set; }
 
     [Column("descripcion")]
     [StringLength(15)]
     public string? Descripcion { get; set; }
 
-    [ForeignKey("MaquinaIdMaquina")]
-    [InverseProperty("Estado")]
-    public virtual Maquina MaquinaIdMaquinaNavigation { get; set; } = null!;
+    [InverseProperty("IdEstadoNavigation")]
+    public virtual ICollection<Maquina> Maquinas { get; set; } = new List<Maquina>();
 }

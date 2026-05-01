@@ -16,39 +16,39 @@ using System.Windows.Shapes;
 namespace Proyecto.Dialogos
 {
     /// <summary>
-    /// Lógica de interacción para AgregarUsuario.xaml
+    /// Lógica de interacción para AgregarProyecto.xaml
     /// </summary>
-    public partial class AgregarUsuario : Window
+    public partial class AgregarProyecto : Window
     {
-        private MVTrabajador _MVAgregarUsuario;
-        public AgregarUsuario(MVTrabajador mVAgregarUsuario)
+
+        private MVProyecto _MVProyecto;
+        public AgregarProyecto(MVProyecto mVProyecto)
         {
             InitializeComponent();
-            _MVAgregarUsuario = mVAgregarUsuario;
+            _MVProyecto = mVProyecto;
         }
 
-        private async void diagAgregarUsuario_Loaded(object sender, RoutedEventArgs e)
+        private async void diagAgregarProyecto_Loaded(object sender, RoutedEventArgs e)
         {
-            await _MVAgregarUsuario.Inicializa();
-            DataContext = _MVAgregarUsuario;
+            await _MVProyecto.Inicializa();
+            DataContext = _MVProyecto;
         }
 
-        private void btnCancelarUsuario_Click(object sender, RoutedEventArgs e)
+        private void btnCancelarProyecto_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
         }
 
-        private async void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarProyecto_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
-                await _MVAgregarUsuario.GuardarUsuario();
+                await _MVProyecto.GuardarProyecto();
                 DialogResult = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al Guardar el Usuario");
+                MessageBox.Show("Error al Guardar el proyecto");
             }
         }
     }

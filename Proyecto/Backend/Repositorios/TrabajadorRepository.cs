@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Backend.Repositorios
 {
-    public class TrabajadorRepository : GenericRepository<Trabajadores>
+    public class TrabajadorRepository : GenericRepository<Trabajadore>
     {
-        private readonly ILogger<GenericRepository<Trabajadores>> _logger;
-        public TrabajadorRepository(AndresProyecto2Context context, ILogger<GenericRepository<Trabajadores>> logger)
+        private readonly ILogger<GenericRepository<Trabajadore>> _logger;
+        public TrabajadorRepository(AndresProyecto2Context context, ILogger<GenericRepository<Trabajadore>> logger)
             : base(context, logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));    
@@ -84,7 +84,7 @@ namespace Proyecto.Backend.Repositorios
         /// <summary>
         /// Obtiene un trabajador por su campo Usuario (sin tracking).
         /// </summary>
-        public async Task<Trabajadores?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default)
+        public async Task<Trabajadore?> GetByUsernameAsync(string username, CancellationToken cancellationToken = default)
         {
             return await Query(asNoTracking: true)
                          .FirstOrDefaultAsync(t => t.Usuario == username, cancellationToken)
@@ -105,7 +105,7 @@ namespace Proyecto.Backend.Repositorios
         /// Obtiene el trabajador identificado por su ID e incluye su ROL.
         /// Devuelve entidad trackeada (asNoTracking: false) para permitir edición posterior.
         /// </summary>
-        public async Task<Trabajadores?> GetWithRelationsAsync(int idTrabajador, CancellationToken cancellationToken = default)
+        public async Task<Trabajadore?> GetWithRelationsAsync(int idTrabajador, CancellationToken cancellationToken = default)
         {
             // Adaptado: Ahora buscamos por idTrabajador e incluimos el Rol (RolIdRolNavigation)
             return await Query(asNoTracking: false,

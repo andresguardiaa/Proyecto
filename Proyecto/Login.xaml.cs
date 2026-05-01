@@ -73,7 +73,7 @@ namespace Proyecto
 
         private void btnClose_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
     }
 }

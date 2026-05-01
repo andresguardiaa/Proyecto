@@ -9,15 +9,14 @@ namespace Proyecto.Backend.Modelo;
 [Table("modelo")]
 public partial class Modelo
 {
+    [Key]
+    [Column("idModelo")]
+    public int IdModelo { get; set; }
+
     [Column("modeloMaquina")]
     [StringLength(45)]
     public string ModeloMaquina { get; set; } = null!;
 
-    [Key]
-    [Column("maquina_idMaquina")]
-    public int MaquinaIdMaquina { get; set; }
-
-    [ForeignKey("MaquinaIdMaquina")]
-    [InverseProperty("Modelo")]
-    public virtual Maquina MaquinaIdMaquinaNavigation { get; set; } = null!;
+    [InverseProperty("IdModeloNavigation")]
+    public virtual ICollection<Maquina> Maquinas { get; set; } = new List<Maquina>();
 }

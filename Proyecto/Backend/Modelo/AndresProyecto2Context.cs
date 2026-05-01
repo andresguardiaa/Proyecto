@@ -35,15 +35,13 @@ public partial class AndresProyecto2Context : DbContext
 
     public virtual DbSet<Rol> Rols { get; set; }
 
-    public virtual DbSet<RolHasPermiso> RolHasPermisos { get; set; }
-
-    public virtual DbSet<Trabajadores> Trabajadores { get; set; }
+    public virtual DbSet<Trabajadore> Trabajadores { get; set; }
 
     public virtual DbSet<Trabajo> Trabajos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("server=localhost;port=3306;database=andres_proyecto2;user=root;password=mysql");
+        => optionsBuilder.UseMySQL("server=127.0.0.1;port=3306;database=andres_proyecto2;user=root;password=root");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -54,11 +52,7 @@ public partial class AndresProyecto2Context : DbContext
 
         modelBuilder.Entity<Estado>(entity =>
         {
-            entity.HasKey(e => e.MaquinaIdMaquina).HasName("PRIMARY");
-
-            entity.HasOne(d => d.MaquinaIdMaquinaNavigation).WithOne(p => p.Estado)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Estado_maquina1");
+            entity.HasKey(e => e.IdEstado).HasName("PRIMARY");
         });
 
         modelBuilder.Entity<Factura>(entity =>
@@ -78,6 +72,14 @@ public partial class AndresProyecto2Context : DbContext
         modelBuilder.Entity<Maquina>(entity =>
         {
             entity.HasKey(e => e.IdMaquina).HasName("PRIMARY");
+
+            entity.HasOne(d => d.IdEstadoNavigation).WithMany(p => p.Maquinas)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_maquina_estado");
+
+            entity.HasOne(d => d.IdModeloNavigation).WithMany(p => p.Maquinas)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_maquina_modelo");
 
             entity.HasMany(d => d.GastosIdGastos).WithMany(p => p.MaquinaIdMaquinas)
                 .UsingEntity<Dictionary<string, object>>(
@@ -103,11 +105,7 @@ public partial class AndresProyecto2Context : DbContext
 
         modelBuilder.Entity<Modelo>(entity =>
         {
-            entity.HasKey(e => e.MaquinaIdMaquina).HasName("PRIMARY");
-
-            entity.HasOne(d => d.MaquinaIdMaquinaNavigation).WithOne(p => p.Modelo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Modelo_maquina1");
+            entity.HasKey(e => e.IdModelo).HasName("PRIMARY");
         });
 
         modelBuilder.Entity<Nomina>(entity =>
@@ -122,6 +120,27 @@ public partial class AndresProyecto2Context : DbContext
         modelBuilder.Entity<Permiso>(entity =>
         {
             entity.HasKey(e => e.IdPermiso).HasName("PRIMARY");
+
+            entity.HasMany(d => d.RolIdRols).WithMany(p => p.PermisosIdPermisos)
+                .UsingEntity<Dictionary<string, object>>(
+                    "RolHasPermiso",
+                    r => r.HasOne<Rol>().WithMany()
+                        .HasForeignKey("RolIdRol")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("fk_rol_has_permisos_rol1"),
+                    l => l.HasOne<Permiso>().WithMany()
+                        .HasForeignKey("PermisosIdPermiso")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("fk_rol_has_permisos_permisos1"),
+                    j =>
+                    {
+                        j.HasKey("PermisosIdPermiso", "RolIdRol").HasName("PRIMARY");
+                        j.ToTable("rol_has_permisos");
+                        j.HasIndex(new[] { "PermisosIdPermiso" }, "fk_rol_has_permisos_permisos1_idx");
+                        j.HasIndex(new[] { "RolIdRol" }, "fk_rol_has_permisos_rol1_idx");
+                        j.IndexerProperty<int>("PermisosIdPermiso").HasColumnName("permisos_idPermiso");
+                        j.IndexerProperty<int>("RolIdRol").HasColumnName("rol_idRol");
+                    });
         });
 
         modelBuilder.Entity<Proyecto>(entity =>
@@ -138,20 +157,7 @@ public partial class AndresProyecto2Context : DbContext
             entity.HasKey(e => e.IdRol).HasName("PRIMARY");
         });
 
-        modelBuilder.Entity<RolHasPermiso>(entity =>
-        {
-            entity.HasKey(e => new { e.PermisosIdPermiso, e.RolIdRol }).HasName("PRIMARY");
-
-            entity.HasOne(d => d.PermisosIdPermisoNavigation).WithMany(p => p.RolHasPermisos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_rol_has_permisos_permisos1");
-
-            entity.HasOne(d => d.RolIdRolNavigation).WithMany(p => p.RolHasPermisos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_rol_has_permisos_rol1");
-        });
-
-        modelBuilder.Entity<Trabajadores>(entity =>
+        modelBuilder.Entity<Trabajadore>(entity =>
         {
             entity.HasKey(e => e.IdTrabajador).HasName("PRIMARY");
 

@@ -29,23 +29,4 @@ public partial class Gasto
     [ForeignKey("GastosIdGasto")]
     [InverseProperty("GastosIdGastos")]
     public virtual ICollection<Maquina> MaquinaIdMaquinas { get; set; } = new List<Maquina>();
-
-    public string NombreModelo
-    {
-        get
-        {
-            // 1. Accedemos a la lista directa de máquinas
-            // IMPORTANTE: Si te da error en ".Maquinas", comprueba en este mismo archivo
-            // cómo se llama la lista. A veces EF la llama "MaquinaIdMaquinas".
-            var maquina = this.MaquinaIdMaquinas?.FirstOrDefault();
-
-            if (maquina != null && maquina.Modelo != null)
-            {
-                return maquina.Modelo.ModeloMaquina;
-            }
-
-            return "Gasto General";
-        }
-    }
-
 }

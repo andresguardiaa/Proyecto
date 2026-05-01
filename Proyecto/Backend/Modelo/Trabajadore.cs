@@ -9,7 +9,8 @@ namespace Proyecto.Backend.Modelo;
 [Table("trabajadores")]
 [Index("Dni", Name = "dni_UNIQUE", IsUnique = true)]
 [Index("RolIdRol", Name = "fk_trabajadores_rol1_idx")]
-public partial class Trabajadores
+[Index("Usuario", Name = "usuario", IsUnique = true)]
+public partial class Trabajadore
 {
     [Key]
     [Column("idTrabajador")]
@@ -50,16 +51,16 @@ public partial class Trabajadores
     [StringLength(45)]
     public string? Cp { get; set; }
 
+    [Column("rol_idRol")]
+    public int RolIdRol { get; set; }
+
     [Column("usuario")]
     [StringLength(45)]
     public string? Usuario { get; set; }
 
     [Column("password")]
-    [StringLength(255)] 
+    [StringLength(255)]
     public string? Password { get; set; }
-
-    [Column("rol_idRol")]
-    public int RolIdRol { get; set; }
 
     [InverseProperty("TrabajadoresIdTrabajadorNavigation")]
     public virtual ICollection<Nomina> Nominas { get; set; } = new List<Nomina>();

@@ -41,5 +41,5 @@ public partial class Trabajo
 
     [ForeignKey("TrabajadoresIdTrabajador")]
     [InverseProperty("Trabajos")]
-    public virtual Trabajadores TrabajadoresIdTrabajadorNavigation { get; set; } = null!;
+    public virtual Trabajadore TrabajadoresIdTrabajadorNavigation { get; set; } = null!;
 }

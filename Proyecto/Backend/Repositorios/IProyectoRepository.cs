@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.Backend.Repositorios
 {
-    interface ITrabajadorRepository : IGenericRepository<Trabajadore>
+    interface IProyectoRepository : IGenericRepository<Modelo.Proyecto>
     {
     }
 }

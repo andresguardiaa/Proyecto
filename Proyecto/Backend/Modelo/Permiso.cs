@@ -17,6 +17,7 @@ public partial class Permiso
     [StringLength(20)]
     public string? Nombre { get; set; }
 
-    [InverseProperty("PermisosIdPermisoNavigation")]
-    public virtual ICollection<RolHasPermiso> RolHasPermisos { get; set; } = new List<RolHasPermiso>();
+    [ForeignKey("PermisosIdPermiso")]
+    [InverseProperty("PermisosIdPermisos")]
+    public virtual ICollection<Rol> RolIdRols { get; set; } = new List<Rol>();
 }

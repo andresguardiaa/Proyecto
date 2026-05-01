@@ -16,7 +16,7 @@ namespace Proyecto.MVVM
 
         
 
-        private Trabajadores _trabajador;
+        private Trabajadore _trabajador;
         private TrabajadorRepository _trabajadorRepository;
         private RolRepository _rolRepository;
 
@@ -26,7 +26,7 @@ namespace Proyecto.MVVM
         public List<Rol> listaRoles => _listaRoles;
         
 
-        public Trabajadores trabajador
+        public Trabajadore trabajador
         {
             get => _trabajador;
             set => SetProperty(ref _trabajador, value);
@@ -37,7 +37,7 @@ namespace Proyecto.MVVM
         {
             _trabajadorRepository = trabajadorRepository;
             _rolRepository = rolRepository;
-            trabajador = new Trabajadores();
+            trabajador = new Trabajadore();
         }
 
         public async Task Inicializa()

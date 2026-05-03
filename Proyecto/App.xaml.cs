@@ -60,6 +60,7 @@ namespace Proyecto
             services.AddScoped<IGenericRepository<Maquina>, MaquinaRepository>();
             services.AddScoped<IGenericRepository<Modelo>, ModeloRepository>();
             services.AddScoped<IGenericRepository<Estado>, EstadoRepository>();
+            services.AddScoped<IGenericRepository<Nomina>, NominaRepository>();
 
             // Repositorios específicos para cada entidad, si es necesario
             services.AddScoped<RolHasPermisoRepository>();
@@ -73,6 +74,7 @@ namespace Proyecto
             services.AddScoped<MaquinaRepository>();
             services.AddScoped<ModeloRepository>();
             services.AddScoped<EstadoRepository>();
+            services.AddScoped<NominaRepository>();
 
             // Registramos las interfaces de usuario
             services.AddTransient<AgregarUsuario>();

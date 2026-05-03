@@ -37,7 +37,7 @@ namespace Proyecto.UC
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-            _mVGasto.LimpiarFiltro();
+            _mVGasto.LimpiarFiltros();
         }
 
         private void btnFiltrar_Click(object sender, RoutedEventArgs e)

@@ -29,4 +29,21 @@ public partial class Gasto
     [ForeignKey("GastosIdGasto")]
     [InverseProperty("GastosIdGastos")]
     public virtual ICollection<Maquina> MaquinaIdMaquinas { get; set; } = new List<Maquina>();
+
+    [NotMapped] 
+    public string NombreModelo
+    {
+        get
+        {
+            var maquina = MaquinaIdMaquinas?.FirstOrDefault();
+
+            if (maquina == null)
+                return "❌ No hay máquina enlazada";
+
+            if (maquina.IdModeloNavigation == null)
+                return "❌ La máquina no tiene modelo";
+
+            return maquina.IdModeloNavigation.ModeloMaquina ?? "❌ El nombre está en blanco";
+        }
+    }
 }

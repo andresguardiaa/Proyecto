@@ -29,36 +29,27 @@ namespace Proyecto
                 bool isAuthenticated = await _trabajadorRepository.LoginAsync(txtUsuario.Text, passClave.Password);
                 if (isAuthenticated)
                 {
-
                     _mainWindow.Show();
                     this.Close();
-
                 }
                 else
                 {
                     MessageBox.Show("Usuario o clave incorrectos.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 }
-
-
             }
             else
             {
                 MessageBox.Show("Por favor, introduce usuario y clave.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
         }
 
         private void btnMin_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
             this.WindowState = WindowState.Minimized;
-
         }
 
         private void btnMax_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
             if (this.WindowState == WindowState.Normal)
             {
                 this.WindowState = WindowState.Maximized;
@@ -67,8 +58,6 @@ namespace Proyecto
             {
                 this.WindowState = WindowState.Normal;
             }
-
-
         }
 
         private void btnClose_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

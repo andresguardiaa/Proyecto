@@ -14,9 +14,17 @@ namespace Proyecto
         private AgregarMaquina _agregarMaquina;
         private UCVerGastos _uCVerGastos;
         private UCVerIngresos _uCVerIngresos;
+        private UCDashboard _uCDashboard;
 
         //Constructor
-        public MainWindow(AgregarUsuario agregarUsuario, AgregarProyecto agregarProyecto, AgregarMaquina agregarMaquina, UCVerGastos uCVerGastos, UCVerIngresos uCVerIngresos)
+        public MainWindow(
+            AgregarUsuario agregarUsuario, 
+            AgregarProyecto agregarProyecto, 
+            AgregarMaquina agregarMaquina, 
+            UCVerGastos uCVerGastos, 
+            UCVerIngresos uCVerIngresos,
+            UCDashboard uCDashboard
+            )
         {
             InitializeComponent();
             _agregarUsuario = agregarUsuario;
@@ -24,6 +32,9 @@ namespace Proyecto
             _agregarMaquina = agregarMaquina;
             _uCVerGastos = uCVerGastos;
             _uCVerIngresos = uCVerIngresos;
+            _uCDashboard = uCDashboard;
+
+            CargarDashboard();
         }
 
         #region dialogos 
@@ -81,6 +92,18 @@ namespace Proyecto
 
         #region UserControl
 
+        //Carga inicial del dashboard
+        private void CargarDashboard()
+        {
+            if (panelCentral != null) panelCentral.Children.Clear();
+            panelCentral.Children.Add(_uCDashboard);
+        }
+
+        private void btnDashboard_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            CargarDashboard();
+        }
+
         private void btnListarGastos_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if(panelCentral != null) panelCentral.Children.Clear();
@@ -93,10 +116,8 @@ namespace Proyecto
             panelCentral.Children.Add(_uCVerIngresos);
         }
 
-        private void ListViewItemMenu_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            panelCentral.Children.Clear();
-        }
+        
+
         #endregion
 
         

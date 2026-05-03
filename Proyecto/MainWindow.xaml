@@ -30,7 +30,7 @@
                 <StackPanel>
                     <Grid>
                         <materialDesign:PackIcon Kind="ViewDashboard" Width="15" Height="15" Margin="10 16" Foreground="White"/>
-                        <ListBoxItem x:Name="ListViewItemMenu" PreviewMouseLeftButtonUp="ListViewItemMenu_PreviewMouseLeftButtonUp" Content="Dashboard" Padding="37 14" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignListBoxItem}"/>
+                        <ListBoxItem x:Name="btnDashboard" PreviewMouseLeftButtonUp="btnDashboard_PreviewMouseLeftButtonUp" Content="Dashboard" Padding="37 14" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignListBoxItem}"/>
                     </Grid>
                     <Grid>
                         <materialDesign:PackIcon Kind="AccountHardHat" Foreground="White" Width="20" Height="20" Margin="8 15" />
@@ -79,6 +79,8 @@
 
             </Grid>
             <Grid x:Name="panelCentral">
+                
+                
 
             </Grid>
         </DockPanel>

@@ -4,6 +4,7 @@ using Proyecto.Backend.Modelo;
 using Proyecto.Backend.Repositorios;
 using Proyecto.Dialogos;
 using Proyecto.MVVM;
+using Proyecto.MVVM.Base;
 using Proyecto.UC;
 using System.Windows;
 
@@ -83,7 +84,8 @@ namespace Proyecto
             services.AddTransient<UCVerGastos>();
             services.AddTransient<UCVerIngresos>();
             services.AddTransient<UCListadoUsuarios>();
-           
+            services.AddTransient<UCDashboard>();
+
 
             // ViewModels
             services.AddTransient<MVTrabajador>();
@@ -91,6 +93,7 @@ namespace Proyecto
             services.AddTransient<MVFactura>();
             services.AddTransient<MVProyecto>();
             services.AddTransient<MVMaquina>();
+            services.AddTransient<MVDashboard>();
 
         }
 

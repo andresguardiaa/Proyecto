@@ -56,12 +56,13 @@ namespace Proyecto
             services.AddScoped<IGenericRepository<Gasto>, GastoRepository>();
             services.AddScoped<IGenericRepository<Factura>, FacturaRepository>();
             services.AddScoped<IGenericRepository<Trabajadore>, TrabajadorRepository>();
-            services.AddScoped<IGenericRepository<Proyecto.Backend.Modelo.Proyecto>, ProyectoRepository>();
+            services.AddScoped<IGenericRepository<Backend.Modelo.Proyecto>, ProyectoRepository>();
             services.AddScoped<IGenericRepository<Cliente>, ClienteRepository>();
             services.AddScoped<IGenericRepository<Maquina>, MaquinaRepository>();
             services.AddScoped<IGenericRepository<Modelo>, ModeloRepository>();
             services.AddScoped<IGenericRepository<Estado>, EstadoRepository>();
             services.AddScoped<IGenericRepository<Nomina>, NominaRepository>();
+            services.AddScoped<IGenericRepository<Trabajo>, TrabajoRepository>();
 
             // Repositorios específicos para cada entidad, si es necesario
             services.AddScoped<RolHasPermisoRepository>();
@@ -76,6 +77,7 @@ namespace Proyecto
             services.AddScoped<ModeloRepository>();
             services.AddScoped<EstadoRepository>();
             services.AddScoped<NominaRepository>();
+            services.AddScoped<TrabajoRepository>();
 
             // Registramos las interfaces de usuario
             services.AddTransient<AgregarUsuario>();

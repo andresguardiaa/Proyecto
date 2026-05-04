@@ -1,5 +1,6 @@
 ﻿using Proyecto.Backend.Modelo;
 using Proyecto.Backend.Repositorios;
+using Proyecto.Core;
 using System.Windows;
 
 namespace Proyecto
@@ -26,9 +27,11 @@ namespace Proyecto
         {
             if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(passClave.Password))
             {
-                bool isAuthenticated = await _trabajadorRepository.LoginAsync(txtUsuario.Text, passClave.Password);
-                if (isAuthenticated)
+                var  usuarioAutenticado = await _trabajadorRepository.LoginAsync2(txtUsuario.Text, passClave.Password);
+                if (usuarioAutenticado != null)
                 {
+                    SesionGlobal.UsuarioActual = usuarioAutenticado;
+
                     _mainWindow.Show();
                     this.Close();
                 }

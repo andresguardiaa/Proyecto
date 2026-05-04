@@ -41,6 +41,32 @@ namespace Proyecto.Backend.Repositorios
         }
 
         /// <summary>
+        /// Intenta autenticar por el campo Usuario y Password de la tabla Trabajadores.
+        /// Devuelve el Trabajador si las credenciales coinciden, o null si son incorrectas.
+        /// </summary>
+        public async Task<Trabajadore?> LoginAsync2(string username, string password, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var trabajador = await Query(asNoTracking: true)
+                    .FirstOrDefaultAsync(t => t.Usuario == username, cancellationToken)
+                    .ConfigureAwait(false);
+
+                if (trabajador != null && trabajador.Password == password)
+                {
+                    return trabajador; 
+                }
+
+                return null; 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al autenticar Trabajador usuario {Username}.", username);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Cambia la contraseña identificando el registro por su campo Usuario.
         /// Devuelve true si se actualizó correctamente.
         /// </summary>

@@ -30,6 +30,7 @@ namespace Proyecto.UC
 
         private void ucDashboard_Loaded(object sender, RoutedEventArgs e)
         {
+            _mVDashboard.RefrescarSesion();
             this.DataContext = _mVDashboard;
         }
     }

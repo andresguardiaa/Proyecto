@@ -1,4 +1,5 @@
-﻿using Proyecto.Dialogos;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Proyecto.Dialogos;
 using Proyecto.UC;
 using System.Windows;
 
@@ -15,6 +16,10 @@ namespace Proyecto
         private UCVerGastos _uCVerGastos;
         private UCVerIngresos _uCVerIngresos;
         private UCDashboard _uCDashboard;
+        private UCListadoUsuarios _uCListadoUsuarios;
+        private UCListadoMaquinas _uCListadoMaquinas;
+
+        private readonly IServiceProvider _serviceProvider;
 
         //Constructor
         public MainWindow(
@@ -23,16 +28,22 @@ namespace Proyecto
             AgregarMaquina agregarMaquina, 
             UCVerGastos uCVerGastos, 
             UCVerIngresos uCVerIngresos,
-            UCDashboard uCDashboard
+            UCDashboard uCDashboard,
+            UCListadoUsuarios uCListadoUsuarios,
+            UCListadoMaquinas uCListadoMaquinas,
+            IServiceProvider serviceProvider
             )
         {
             InitializeComponent();
+            _serviceProvider = serviceProvider;
             _agregarUsuario = agregarUsuario;
             _agregarProyecto = agregarProyecto;
             _agregarMaquina = agregarMaquina;
             _uCVerGastos = uCVerGastos;
             _uCVerIngresos = uCVerIngresos;
             _uCDashboard = uCDashboard;
+            _uCListadoUsuarios = uCListadoUsuarios;
+            _uCListadoMaquinas = uCListadoMaquinas;
 
             CargarDashboard();
         }
@@ -41,20 +52,19 @@ namespace Proyecto
 
         private void AgregarUsuario_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var dlg = _agregarUsuario;
+            var dlg = _serviceProvider.GetRequiredService<AgregarUsuario>();
             dlg.ShowDialog();
-
         }
 
         private void AgregarProyecto_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var dlg = _agregarProyecto;
+            var dlg = _serviceProvider.GetRequiredService<AgregarProyecto>();
             dlg.ShowDialog();
         }
 
         private void AgregarMaquina_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var dlg = _agregarMaquina;
+            var dlg = _serviceProvider.GetRequiredService<AgregarMaquina>();
             dlg.ShowDialog();
         }
 
@@ -116,10 +126,20 @@ namespace Proyecto
             panelCentral.Children.Add(_uCVerIngresos);
         }
 
-        
+        private void ListadoUsuarios_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (panelCentral != null) panelCentral.Children.Clear();
+            panelCentral.Children.Add(_uCListadoUsuarios);
+        }
+
+        private void ListadoMaquinas_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (panelCentral != null) panelCentral.Children.Clear();
+            panelCentral.Children.Add(_uCListadoMaquinas);
+        }
 
         #endregion
 
-        
+
     }
 }

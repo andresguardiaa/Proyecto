@@ -152,10 +152,9 @@ namespace Proyecto.MVVM
             
 
             SeriesProductividad = new ObservableCollection<ISeries>();
-            _ = InicializarDashboardAsync();
         }
 
-        private async Task InicializarDashboardAsync()
+        public async Task InicializarDashboardAsync()
         {
             try
             {
@@ -460,15 +459,27 @@ namespace Proyecto.MVVM
 
         #region KPIs
 
+        //carga las tarjetas de los kpis rápidos
         private async Task CargarKpisAsync()
         {
             try
             {
                 var proyectos = await _proyectoRepository.GetAllAsync();
+                var trabajadores = await _trabajadorRepository.GetAllAsync();
+                var maquinas = await _maquinaRepository.GetAllMaquinasAsync();
+
 
                 int cantidadActivos = proyectos.Count(p => p.FechaFin == null || p.FechaFin >= DateTime.Now);
 
+                int cantidadTotalTrabajadores = trabajadores.Count;
+                int cantidadTrabajadoresActivos = trabajadores.Count(t => t.Estado == "Activo");
+
+                int cantidadTotalMaquinas = maquinas.Count();
+                int cantidadMaquinasOperativas = maquinas.Count(m => m.IdEstadoNavigation != null && m.IdEstadoNavigation.Descripcion == "En Uso");
+
                 KpiProyectos = $"{cantidadActivos} Activos";
+                KpiPlantillaActiva = $"{cantidadTrabajadoresActivos} / {cantidadTotalTrabajadores} Activos";
+                KpiMaquinasOperativas = $"{cantidadMaquinasOperativas} / {cantidadTotalMaquinas} Operando";
             }
             catch (Exception ex)
             {
@@ -479,9 +490,7 @@ namespace Proyecto.MVVM
 
         private void CargarKPIsMock()
         {
-            KpiPlantillaActiva = "45 / 48 (3 Baja)";
             KpiBalance = "+ 14.500 €";
-            KpiMaquinasOperativas = "18 / 20 Disp.";
         }
         #endregion
     }

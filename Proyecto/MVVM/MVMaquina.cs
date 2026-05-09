@@ -3,9 +3,11 @@ using Proyecto.Backend.Repositorios;
 using Proyecto.MVVM.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto.MVVM
 {
@@ -18,6 +20,8 @@ namespace Proyecto.MVVM
 
         private List<Modelo> _listaModelos;
         private List<Estado> _listaEstados;
+        private ObservableCollection<Maquina> _listaMaquinas;
+        private Maquina _maquinaSeleccionada;
 
         private MaquinaRepository _maquinaRepository;
         private ModeloRepository _modeloRepository;
@@ -44,6 +48,18 @@ namespace Proyecto.MVVM
             get => _nombreEstado;
             set => SetProperty(ref _nombreEstado, value);
         }
+
+        public ObservableCollection<Maquina> ListaMaquinas
+        {
+            get => _listaMaquinas;
+            set => SetProperty(ref _listaMaquinas, value);
+        }
+
+        public Maquina MaquinaSeleccionada
+        {
+            get => _maquinaSeleccionada;
+            set => SetProperty(ref _maquinaSeleccionada, value);
+        }
         #endregion
 
         #region constructor
@@ -61,6 +77,8 @@ namespace Proyecto.MVVM
         {
             _listaModelos = await GetAllAsync<Modelo>(_modeloRepository);
             _listaEstados = await GetAllAsync<Estado>(_estadoRepository);
+            var maquinas = await GetAllAsync<Maquina>(_maquinaRepository);
+            ListaMaquinas = new ObservableCollection<Maquina>(maquinas);
         }
 
         // Función guardar
@@ -123,6 +141,44 @@ namespace Proyecto.MVVM
                 System.Windows.MessageBox.Show(errorReal, "Error al guardar");
 
                 throw new Exception("Error al guardar la maquina: " + errorReal);
+            }
+        }
+
+        // Función para dar de baja (Borrado lógico)
+        public async Task DarDeBajaMaquina(Maquina maquinaABorrar)
+        {
+            if (maquinaABorrar == null) return;
+
+            try
+            {
+                // 1. Buscamos el estado "Baja" (o "Inactiva") en la tabla de Estados
+                var estadoBaja = await _estadoRepository.FirstOrDefaultAsync(e => e.Descripcion == "Baja", false);
+
+                // 2. Si el estado "Baja" no existe en la base de datos, lo creamos
+                if (estadoBaja == null)
+                {
+                    estadoBaja = new Estado()
+                    {
+                        Descripcion = "Baja"
+                    };
+                    await _estadoRepository.AddAsync(estadoBaja);
+                }
+
+                // 3. Le asignamos este estado a la máquina seleccionada
+                maquinaABorrar.IdEstadoNavigation = estadoBaja;
+                maquinaABorrar.IdEstado = estadoBaja.IdEstado;
+
+                // 4. Actualizamos la máquina en la base de datos
+                await _maquinaRepository.UpdateAsync(maquinaABorrar);
+
+                // 5. Refrescamos la lista para que la vista se actualice
+                await Inicializa();
+
+                SnackbarMessageQueue.Enqueue("Máquina dada de baja correctamente.");
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error al dar de baja la máquina: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

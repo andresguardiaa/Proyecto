@@ -1,4 +1,5 @@
-﻿using Proyecto.MVVM;
+﻿using Proyecto.Backend.Modelo;
+using Proyecto.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,19 @@ namespace Proyecto.Dialogos
     public partial class AgregarUsuario : Window
     {
         private MVTrabajador _MVAgregarUsuario;
-        public AgregarUsuario(MVTrabajador mVAgregarUsuario)
+        private readonly IServiceProvider _serviceProvider;
+        public AgregarUsuario(MVTrabajador mVAgregarUsuario, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _MVAgregarUsuario = mVAgregarUsuario;
+            _serviceProvider = serviceProvider;
+        }
+
+        public async Task Inicializa(Trabajadore trabajador)
+        {
+            await _MVAgregarUsuario.Inicializa();
+            _MVAgregarUsuario.trabajador = trabajador; 
+            DataContext = _MVAgregarUsuario;
         }
 
         private async void diagAgregarUsuario_Loaded(object sender, RoutedEventArgs e)
@@ -45,6 +55,7 @@ namespace Proyecto.Dialogos
             {
                 await _MVAgregarUsuario.GuardarUsuario();
                 DialogResult = true;
+                MessageBox.Show("Usuario guardado correctamente");
             }
             catch (Exception ex)
             {

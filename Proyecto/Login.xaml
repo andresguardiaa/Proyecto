@@ -57,40 +57,34 @@
                 <!-- Username -->
                 <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
                     <TextBox materialDesign:HintAssist.Hint="Usuario"
-                      Padding="20,0,0,0"
-                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                      FontSize="16"
-                      x:Name="txtUsuario"
-                      BorderThickness="0"
-                      BorderBrush="Transparent"
-                      Background="Transparent"
-                      Foreground="#9CA3AF"
-                      VerticalContentAlignment="Center">
-                        <!--<TextBox.BorderBrush>
-                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                         <GradientStop Color="#7BC68E" Offset="0"/>
-                         <GradientStop Color="#44C5F5" Offset="1"/>
-                     </LinearGradientBrush>
-                 </TextBox.BorderBrush>-->
-                    </TextBox>
+                             materialDesign:HintAssist.IsFloating="False"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             Padding="20,0,20,0"
+                             FontSize="16"
+                             x:Name="txtUsuario"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Foreground="#9CA3AF"
+                             CaretBrush="#9CA3AF"
+                             VerticalContentAlignment="Center"/>
                 </Border>
 
 
                 <!-- Password -->
                 <Border Background="White" CornerRadius="25" Height="45" Margin="0,0,0,15">
                     <PasswordBox materialDesign:HintAssist.Hint="Contraseña"
-                          Padding="20,0,0,0"
-                          Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
-                          FontSize="16"
-                          x:Name="passClave"
-                          BorderThickness="0"
-                          BorderBrush="Transparent"
-                          Background="Transparent"
-                          Foreground="#9CA3AF"
-                          VerticalContentAlignment="Center"/>
+                                 materialDesign:HintAssist.IsFloating="False"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 Padding="20,0,20,0"
+                                 FontSize="16"
+                                 x:Name="passClave"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 Foreground="#9CA3AF"
+                                 CaretBrush="#9CA3AF"
+                                 VerticalContentAlignment="Center"/>
                 </Border>
 
-                <!-- Botón con esquinas redondeadas mediante ControlTemplate -->
                 <Button Content="Iniciar Sesión"
                  Height="45"
                  FontSize="16"

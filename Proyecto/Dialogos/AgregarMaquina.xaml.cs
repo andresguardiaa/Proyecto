@@ -1,4 +1,5 @@
-﻿using Proyecto.MVVM;
+﻿using Proyecto.Backend.Modelo;
+using Proyecto.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,18 @@ namespace Proyecto.Dialogos
             _MVMaquina = mVMaquina;
         }
 
+        public async Task Inicializa(Maquina maquina)
+        {
+            await _MVMaquina.Inicializa();
+            _MVMaquina.maquina = maquina;
+            if (maquina != null)
+            {
+                _MVMaquina.NombreModelo = maquina.IdModeloNavigation?.ModeloMaquina;
+                _MVMaquina.NombreEstado = maquina.IdEstadoNavigation?.Descripcion;
+            }
+            DataContext = _MVMaquina;
+        }
+
         private async void diagAgregarMaquina_Loaded(object sender, RoutedEventArgs e)
         {
             await _MVMaquina.Inicializa();
@@ -44,6 +57,7 @@ namespace Proyecto.Dialogos
             {
                 await _MVMaquina.GuardarMaquina();
                 DialogResult = true;
+                MessageBox.Show("Máquina guardada correctamente");
             }
             catch (Exception ex)
             {

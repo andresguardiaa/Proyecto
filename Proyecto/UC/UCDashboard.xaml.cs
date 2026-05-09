@@ -28,10 +28,21 @@ namespace Proyecto.UC
             _mVDashboard = mVDashboard;
         }
 
-        private void ucDashboard_Loaded(object sender, RoutedEventArgs e)
+        private async void ucDashboard_Loaded(object sender, RoutedEventArgs e)
         {
             _mVDashboard.RefrescarSesion();
             this.DataContext = _mVDashboard;
+            await _mVDashboard.InicializarDashboardAsync();
+        }
+
+        private async void btnRefrescar_Click(object sender, RoutedEventArgs e)
+        {
+            var boton = sender as Button;
+            if (boton != null) boton.IsEnabled = false;
+
+            await _mVDashboard.InicializarDashboardAsync();
+
+            if (boton != null) boton.IsEnabled = true;
         }
     }
 }

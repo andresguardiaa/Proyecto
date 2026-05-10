@@ -84,6 +84,7 @@ namespace Proyecto
             services.AddTransient<AgregarProyecto>();
             services.AddTransient<AgregarMaquina>();
             services.AddTransient<AgregarModelo>();
+            services.AddTransient<AgregarEstadoMaquina>();
             services.AddTransient<UCVerGastos>();
             services.AddTransient<UCVerIngresos>();
             services.AddTransient<UCListadoUsuarios>();
@@ -101,6 +102,7 @@ namespace Proyecto
             services.AddTransient<MVMaquina>();
             services.AddTransient<MVDashboard>();
             services.AddTransient<MVModelo>();
+            services.AddTransient<MVEstado>();
 
         }
 

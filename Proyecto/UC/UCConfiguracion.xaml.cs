@@ -23,17 +23,25 @@ namespace Proyecto.UC
     public partial class UCConfiguracion : UserControl
     {
         private AgregarModelo _agregarModelo;
+        private AgregarEstadoMaquina _agregarEstadoMaquina;
         private readonly IServiceProvider _serviceProvider;
-        public UCConfiguracion(AgregarModelo agregarModelo, IServiceProvider serviceProvider)
+        public UCConfiguracion(AgregarModelo agregarModelo, IServiceProvider serviceProvider, AgregarEstadoMaquina agregarEstadoMaquina)
         {
             InitializeComponent();
             _agregarModelo = agregarModelo;
             _serviceProvider = serviceProvider;
+            _agregarEstadoMaquina = agregarEstadoMaquina;
         }
 
         private void btnGestionarModelos_Click(object sender, RoutedEventArgs e)
         {
             var dlg = _serviceProvider.GetRequiredService<AgregarModelo>();
+            dlg.ShowDialog();
+        }
+
+        private void btnGestionarEstados_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = _serviceProvider.GetRequiredService<AgregarEstadoMaquina>();
             dlg.ShowDialog();
         }
     }

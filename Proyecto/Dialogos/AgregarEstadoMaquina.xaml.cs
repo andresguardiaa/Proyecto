@@ -16,31 +16,31 @@ using System.Windows.Shapes;
 namespace Proyecto.Dialogos
 {
     /// <summary>
-    /// Lógica de interacción para AgregarModelo.xaml
+    /// Lógica de interacción para AgregarEstadoMaquina.xaml
     /// </summary>
-    public partial class AgregarModelo : Window
+    public partial class AgregarEstadoMaquina : Window
     {
-        private MVModelo _mvModelo;
-        public AgregarModelo(MVModelo mVModelo)
+        private MVEstado _mVEstado;
+        public AgregarEstadoMaquina(MVEstado mVEstado)
         {
             InitializeComponent();
-            _mvModelo = mVModelo;
+            _mVEstado = mVEstado;
 
-            this.DataContext = _mvModelo;
+            this.DataContext = _mVEstado;
         }
 
-        private void btnCancelarModelo_Click(object sender, RoutedEventArgs e)
+        private void btnCancelarEstado_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
         }
 
-        private async void btnGuardarModelo_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarEstado_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                await _mvModelo.GuardarModelo();
+                await _mVEstado.GuardarEstado();
                 DialogResult = true;
-                MessageBox.Show("Modelo guardado correctamente");
+                MessageBox.Show("Estado guardado correctamente");
             }
             catch (Exception ex)
             {

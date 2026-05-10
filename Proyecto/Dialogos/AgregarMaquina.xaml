@@ -8,99 +8,117 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="AgregarMaquina" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         x:Name="diagAgregarMaquina"
-        Loaded="diagAgregarMaquina_Loaded">
-    <DockPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="15*" />
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="15*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            <Border Background="#374151" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-                <TextBlock Text="Agregar Máquinas" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" TextAlignment="Center"/>
-            </Border>
-            <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
-            <ComboBox 
-                x:Name="cmbModelo" 
-                IsEditable="True"
-                Text="{Binding NombreModelo, UpdateSourceTrigger=PropertyChanged}" 
-                ItemsSource="{Binding listaModelos}" 
-                DisplayMemberPath="ModeloMaquina"
-                Grid.Row="2" 
-                Grid.Column="0" 
-                Margin="20,15,20,0" 
-                Foreground="Black" 
-                FontSize="16" 
-                FontWeight="Bold" 
-                Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                materialDesign:HintAssist.Hint="Modelo*"/>
-
-            <TextBox 
-                Grid.Row="2" 
-                Text="{Binding maquina.Tarifa}"
-                Grid.Column="1" 
-                Margin="20,15,20,15" 
-                Foreground="Black" 
-                FontSize="16" 
-                FontWeight="Bold" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                materialDesign:HintAssist.Hint="Tarifa*" 
-                x:Name="txtTarifaMaquina"/>
-
-
-            <TextBox 
-                Grid.Row="3" 
-                Grid.Column="0" 
-                Text="{Binding maquina.Capacidad}"
-                Margin="20,15,20,15" 
-                Foreground="Black" 
-                FontSize="16" 
-                FontWeight="Bold" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                materialDesign:HintAssist.Hint="Capacidad*" 
-                x:Name="txtCapacidadMaquina"/>
-
-            <ComboBox 
-                x:Name="cmbEstado" 
-                IsEditable="True"
-                Text="{Binding NombreEstado, UpdateSourceTrigger=PropertyChanged}" 
-                ItemsSource="{Binding listaEstados}" 
-                DisplayMemberPath="Descripcion"
-                Grid.Row="3" 
-                Grid.Column="1" 
-                Margin="20,15,20,0" 
-                Foreground="Black" 
-                FontSize="16" 
-                FontWeight="Bold" 
-                Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                materialDesign:HintAssist.Hint="Estado*"/>
-            
-            <TextBox 
-                Grid.Row="4" 
-                Grid.Column="0" 
-                Text="{Binding maquina.Ubicacion}"
-                Margin="20,15,20,15" 
-                Foreground="Black" 
-                FontSize="16" 
-                FontWeight="Bold" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                materialDesign:HintAssist.Hint="Ubicación*" 
-                x:Name="txtUbicacionMaquina"/>
-
-
-            <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Background="Transparent" x:Name="btnCancelarMaquina" Click="btnCancelarMaquina_Click"  Content="Cancelar" Margin="80,0,20,0" BorderBrush="DarkGray"/>
-                <Button Content="Guardar" Background="#374151" Foreground="White" x:Name="btnGuardarMaquina" Click="btnGuardarMaquina_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
+        Loaded="diagAgregarMaquina_Loaded"
+        UseLayoutRounding="True" 
+        SnapsToDevicePixels="True">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0" Background="#374151">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0">
+                <materialDesign:PackIcon Kind="WindowMinimize" x:Name="btnMin" Width="20" Height="20" Cursor="Hand" MouseLeftButtonUp="btnMin_MouseLeftButtonUp" Foreground="White"/>
+                <materialDesign:PackIcon Kind="WindowMaximize" x:Name="btnMax" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonUp="btnMax_MouseLeftButtonUp" Foreground="White"/>
+                <materialDesign:PackIcon Kind="WindowClose" x:Name="btnClose"  Width="20" Height="20" Cursor="Hand" MouseLeftButtonUp="btnClose_MouseLeftButtonUp" Foreground="White"/>
             </StackPanel>
-
         </Grid>
-    </DockPanel>
+        <DockPanel Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="#374151" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                    <TextBlock Text="Agregar Máquinas" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26" TextAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+                <ComboBox 
+            x:Name="cmbModelo" 
+            IsEditable="True"
+            Text="{Binding NombreModelo, UpdateSourceTrigger=PropertyChanged}" 
+            ItemsSource="{Binding listaModelos}" 
+            DisplayMemberPath="ModeloMaquina"
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Margin="20,15,20,0" 
+            Foreground="Black" 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+            materialDesign:HintAssist.Hint="Modelo*"/>
+
+                <TextBox 
+            Grid.Row="2" 
+            Text="{Binding maquina.Tarifa}"
+            Grid.Column="1" 
+            Margin="20,15,20,15" 
+            Foreground="Black" 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            materialDesign:HintAssist.Hint="Tarifa*" 
+            x:Name="txtTarifaMaquina"/>
+
+
+                <TextBox 
+            Grid.Row="3" 
+            Grid.Column="0" 
+            Text="{Binding maquina.Capacidad}"
+            Margin="20,15,20,15" 
+            Foreground="Black" 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            materialDesign:HintAssist.Hint="Capacidad*" 
+            x:Name="txtCapacidadMaquina"/>
+
+                <ComboBox 
+            x:Name="cmbEstado" 
+            IsEditable="True"
+            Text="{Binding NombreEstado, UpdateSourceTrigger=PropertyChanged}" 
+            ItemsSource="{Binding listaEstados}" 
+            DisplayMemberPath="Descripcion"
+            Grid.Row="3" 
+            Grid.Column="1" 
+            Margin="20,15,20,0" 
+            Foreground="Black" 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+            materialDesign:HintAssist.Hint="Estado*"/>
+
+                <TextBox 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Text="{Binding maquina.Ubicacion}"
+            Margin="20,15,20,15" 
+            Foreground="Black" 
+            FontSize="16" 
+            FontWeight="Bold" 
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            materialDesign:HintAssist.Hint="Ubicación*" 
+            x:Name="txtUbicacionMaquina"/>
+
+
+                <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Background="Transparent" x:Name="btnCancelarMaquina" Click="btnCancelarMaquina_Click"  Content="Cancelar" Margin="80,0,20,0" BorderBrush="DarkGray"/>
+                    <Button Content="Guardar" Background="#374151" Foreground="White" x:Name="btnGuardarMaquina" Click="btnGuardarMaquina_Click"  Margin="20,0,80,0" BorderBrush="Transparent" />
+                </StackPanel>
+
+            </Grid>
+        </DockPanel>
+    </Grid>
 </Window>

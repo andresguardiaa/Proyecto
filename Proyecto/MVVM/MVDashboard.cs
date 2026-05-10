@@ -40,6 +40,10 @@ namespace Proyecto.MVVM
         //Variables
         private String _nombreUsuario;
         private string _horaActual;
+        private ObservableCollection<string> _alertas;
+        private string _alertaActual;
+        private int _indiceAlerta = 0;
+        private DispatcherTimer _timerAlertas;
 
         //KPIs
         private string _kpiProyectos;
@@ -124,6 +128,17 @@ namespace Proyecto.MVVM
             get => _kpiMaquinasOperativas;
             set => SetProperty(ref _kpiMaquinasOperativas, value);
         }
+
+        public ObservableCollection<string> Alertas
+        {
+            get => _alertas;
+            set => SetProperty(ref _alertas, value);
+        }
+        public string AlertaActual
+        {
+            get => _alertaActual;
+            set => SetProperty(ref _alertaActual, value);
+        }
         #endregion
 
 
@@ -158,12 +173,72 @@ namespace Proyecto.MVVM
             {
                 await CargarKpisAsync();
                 await CargarGraficosAsync();
+                await CargarAlertasAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Fallo crítico al cargar el Dashboard:\n{ex.Message}\n\n{ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
+
+        #region alertas
+
+        private async Task CargarAlertasAsync()
+        {
+            var alertasTemp = new List<string>();
+            var maquinas = await _maquinaRepository.GetAllMaquinasAsync();
+            var proyectos = await _proyectoRepository.GetAllAsync();
+
+            var maquinasConProblemas = maquinas.Where(m => m.IdEstado == 3 || m.IdEstado == 4 || m.IdEstado == 5).ToList();
+            foreach (var maq in maquinasConProblemas)
+            {
+                string estado = maq.IdEstadoNavigation?.Descripcion ?? "Desconocido";
+                alertasTemp.Add($"⚠️ Máquina ID {maq.IdMaquina} en estado: {estado}");
+            }
+
+            var fechaLimite = DateTime.Now.AddDays(30);
+            var proyectosProximos = proyectos.Where(p => p.FechaFin >= DateTime.Now && p.FechaFin <= fechaLimite).ToList();
+            foreach (var proy in proyectosProximos)
+            {
+                alertasTemp.Add($"⏳ Proyecto '{proy.Nombre}' finaliza el {proy.FechaFin.Value:dd/MM/yyyy}");
+            }
+
+            if (!alertasTemp.Any())
+            {
+                alertasTemp.Add("✅ Todo en orden. No hay avisos pendientes.");
+            }
+
+            Alertas = new ObservableCollection<string>(alertasTemp);
+
+            if (Alertas.Any())
+            {
+                AlertaActual = Alertas[0]; 
+                IniciarCarruselAlertas();
+            }
+        }
+
+        private void IniciarCarruselAlertas()
+        {
+            if (_timerAlertas != null) _timerAlertas.Stop();
+
+            _timerAlertas = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(3) 
+            };
+            _timerAlertas.Tick += (s, e) =>
+            {
+                if (Alertas == null || !Alertas.Any()) return;
+
+                _indiceAlerta++;
+                if (_indiceAlerta >= Alertas.Count)
+                    _indiceAlerta = 0; 
+
+                AlertaActual = Alertas[_indiceAlerta];
+            };
+            _timerAlertas.Start();
+        }
+
         #endregion
 
         #region graficos

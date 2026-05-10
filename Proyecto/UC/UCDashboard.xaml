@@ -14,26 +14,33 @@
     <DockPanel>
         <Grid DockPanel.Dock="Top" Margin="20,10,20,10">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,50,0">
                 <TextBlock Text="¡Hola de nuevo: " FontSize="26" FontWeight="Bold" Foreground="#374151"/>
                 <TextBlock Text="{Binding NombreUsuario}" FontSize="26" FontWeight="Bold" Foreground="#374151"/>
                 <TextBlock Text="!" FontSize="26" FontWeight="Bold" Foreground="#374151"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Border Grid.Column="1" Background="#fee2e2" CornerRadius="8" Padding="15,8" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="BellRing" Foreground="#b91c1c" Width="20" Height="20" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding AlertaActual}" FontSize="15" FontWeight="SemiBold" Foreground="#b91c1c" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Style="{StaticResource MaterialDesignToolButton}" 
-                        ToolTip="Refrescar datos" 
-                        x:Name="btnRefrescar"
-                        Click="btnRefrescar_Click" 
-                        Margin="0,0,15,0"
-                        Foreground="#374151">
+                ToolTip="Refrescar datos" 
+                x:Name="btnRefrescar"
+                Click="btnRefrescar_Click" 
+                Margin="0,0,15,0"
+                Foreground="#374151">
                     <materialDesign:PackIcon Kind="Refresh" Width="25" Height="25"/>
                 </Button>
-
                 <materialDesign:PackIcon Kind="ClockOutline" Width="25" Height="25" Foreground="#374151" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding HoraActual}" FontSize="20" FontWeight="SemiBold" Foreground="#374151" VerticalAlignment="Center"/>
             </StackPanel>
@@ -43,7 +50,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <UniformGrid Grid.Row="0" Columns="4" Rows="1" Margin="0,0,0,20">
 
                 <materialDesign:Card Margin="0,0,10,0" Padding="15" UniformCornerRadius="8" Foreground="White">
@@ -199,32 +206,5 @@
                 </materialDesign:Card>
             </Grid>
         </Grid>
-
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <materialDesign:Card Width="350" Margin="20,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Grid.RowSpan="2" Height="350"  UniformCornerRadius="8">
-                <Grid Margin="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Text="Estado de Máquinas" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#374151" />
-
-                    <lvc:PieChart Grid.Row="1" Series="{Binding SeriesProductividad}" LegendPosition="Bottom" />
-                </Grid>
-            </materialDesign:Card>
-        </Grid>-->
     </DockPanel>
 </UserControl>

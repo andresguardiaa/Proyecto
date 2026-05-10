@@ -75,6 +75,11 @@
                         </Expander>
 
                     </Grid>
+
+                    <Grid x:Name="gridConfiguracion" Visibility="Collapsed">
+                        <materialDesign:PackIcon Kind="Cog" Width="18" Height="18" Margin="10 16" Foreground="White"/>
+                        <ListBoxItem x:Name="btnConfiguracion" Content="Configuración" Padding="37 14" FontSize="15" Foreground="White" Style="{StaticResource MaterialDesignListBoxItem}" PreviewMouseLeftButtonUp="btnConfiguracion_PreviewMouseLeftButtonUp"/>
+                    </Grid>
                 </StackPanel>
 
             </Grid>

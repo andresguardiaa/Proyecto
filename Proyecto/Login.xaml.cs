@@ -32,6 +32,8 @@ namespace Proyecto
                 {
                     SesionGlobal.UsuarioActual = usuarioAutenticado;
 
+                    _mainWindow.ConfigurarPermisos();
+
                     _mainWindow.Show();
                     this.Close();
                 }

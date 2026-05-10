@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Proyecto.Core;
 using Proyecto.Dialogos;
 using Proyecto.UC;
 using System.Windows;
@@ -49,6 +50,14 @@ namespace Proyecto
             _uCListadoProyectos = uCListadoProyectos;
 
             CargarDashboard();
+        }
+
+        public void ConfigurarPermisos()
+        {
+            if (SesionGlobal.UsuarioActual != null && SesionGlobal.UsuarioActual.RolIdRol == 1)
+            {
+                gridConfiguracion.Visibility = Visibility.Visible;
+            }
         }
 
         #region dialogos 
@@ -147,8 +156,12 @@ namespace Proyecto
             panelCentral.Children.Add(_uCListadoProyectos);
         }
 
+
         #endregion
 
+        private void btnConfiguracion_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
 
+        }
     }
 }

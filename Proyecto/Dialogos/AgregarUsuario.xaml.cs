@@ -50,7 +50,6 @@ namespace Proyecto.Dialogos
 
         private async void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 await _MVAgregarUsuario.GuardarUsuario();
@@ -62,5 +61,31 @@ namespace Proyecto.Dialogos
                 MessageBox.Show("Error al Guardar el Usuario");
             }
         }
+
+        #region Botones ventana
+
+        private void btnMin_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMax_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void btnClose_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
     }
 }

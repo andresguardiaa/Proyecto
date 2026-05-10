@@ -87,6 +87,7 @@ namespace Proyecto
             services.AddTransient<UCVerIngresos>();
             services.AddTransient<UCListadoUsuarios>();
             services.AddTransient<UCListadoMaquinas>();
+            services.AddTransient<UCListadoProyectos>();
             services.AddTransient<UCDashboard>();
 
 

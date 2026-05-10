@@ -162,7 +162,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="Horas Invertidas por Proyecto Activo" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,10"/>
+                        <TextBlock Text="Horas Estimadas vs Invertidas por Proyecto Activo" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,10"/>
 
                         <lvc:CartesianChart Grid.Row="1" 
                                     Series="{Binding SeriesProyectos}" 

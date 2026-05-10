@@ -18,6 +18,7 @@ namespace Proyecto
         private UCDashboard _uCDashboard;
         private UCListadoUsuarios _uCListadoUsuarios;
         private UCListadoMaquinas _uCListadoMaquinas;
+        private UCListadoProyectos _uCListadoProyectos;
 
         private readonly IServiceProvider _serviceProvider;
 
@@ -31,6 +32,7 @@ namespace Proyecto
             UCDashboard uCDashboard,
             UCListadoUsuarios uCListadoUsuarios,
             UCListadoMaquinas uCListadoMaquinas,
+            UCListadoProyectos uCListadoProyectos,
             IServiceProvider serviceProvider
             )
         {
@@ -44,6 +46,7 @@ namespace Proyecto
             _uCDashboard = uCDashboard;
             _uCListadoUsuarios = uCListadoUsuarios;
             _uCListadoMaquinas = uCListadoMaquinas;
+            _uCListadoProyectos = uCListadoProyectos;
 
             CargarDashboard();
         }
@@ -136,6 +139,12 @@ namespace Proyecto
         {
             if (panelCentral != null) panelCentral.Children.Clear();
             panelCentral.Children.Add(_uCListadoMaquinas);
+        }
+
+        private void ListadoProyectos_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (panelCentral != null) panelCentral.Children.Clear();
+            panelCentral.Children.Add(_uCListadoProyectos);
         }
 
         #endregion

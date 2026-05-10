@@ -46,9 +46,14 @@
                     <DataGridTextColumn Header="Estado" Binding="{Binding IdEstadoNavigation.Descripcion}" IsReadOnly="True"/>
                     
                     <DataGridTemplateColumn Header="Editar">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEditarMaquina" Click="btnEditarMaquina_Click" Foreground="White" BorderBrush="Transparent">
+                                <Button x:Name="btnEditarMaquina" Click="btnEditarMaquina_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Editar" Margin="10,0,10,0"/>
                                         <materialDesign:PackIcon Kind="Edit"/>
@@ -59,9 +64,14 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTemplateColumn Header="Dar de Baja">
+                        <DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEliminarMaquina" Click="btnEliminarMaquina_Click" Foreground="White" BorderBrush="Transparent" Background="#f54e42">
+                                <Button x:Name="btnEliminarMaquina" Click="btnEliminarMaquina_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent" Background="#f54e42">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Dar de Baja" Margin="10,0,10,0"/>
                                         <materialDesign:PackIcon Kind="Trash"/>

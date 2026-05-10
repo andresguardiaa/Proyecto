@@ -147,9 +147,7 @@ namespace Proyecto.MVVM
             _proyectoRepository = proyectoRepository;
 
             RefrescarSesion();
-            IniciarReloj();
-            CargarKPIsMock();
-            
+            IniciarReloj();            
 
             SeriesProductividad = new ObservableCollection<ISeries>();
         }
@@ -204,18 +202,18 @@ namespace Proyecto.MVVM
             var gastos = await _gastoRepository.GetAllAsync();
             var nominas = await _nominaRepository.GetAllAsync();
 
-            var ultimos6Meses = Enumerable.Range(0, 6)
+            var ultimos6Meses = Enumerable.Range(0, 12)
                 .Select(i => DateTime.Now.Date.AddMonths(-i))
                 .OrderBy(d => d) 
                 .ToList();
 
             var labelsMeses = ultimos6Meses.Select(d => d.ToString("MMM yyyy")).ToArray();
 
-            var valoresIngresos = new double[6];
-            var valoresGastos = new double[6];
-            var valoresNominas = new double[6];
+            var valoresIngresos = new double[12];
+            var valoresGastos = new double[12];
+            var valoresNominas = new double[12];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 12; i++)
             {
                 var mes = ultimos6Meses[i].Month;
                 var anio = ultimos6Meses[i].Year;
@@ -246,7 +244,7 @@ namespace Proyecto.MVVM
                 new LineSeries<double>
                 {
                     Values = valoresGastos,
-                    Name = "Gastos",
+                    Name = "Gastos Variables",
                     Stroke = new SolidColorPaint(SKColors.Tomato) { StrokeThickness = 3 },
                     GeometryFill = new SolidColorPaint(SKColors.Tomato),
                     GeometryStroke = new SolidColorPaint(SKColors.Tomato)
@@ -254,7 +252,7 @@ namespace Proyecto.MVVM
                 new LineSeries<double>
                 {
                     Values = valoresNominas,
-                    Name = "Nóminas",
+                    Name = "Gastos Fijos",
                     Stroke = new SolidColorPaint(SKColors.Blue) { StrokeThickness = 3 },
                     GeometryFill = new SolidColorPaint(SKColors.Blue),
                     GeometryStroke = new SolidColorPaint(SKColors.Blue)
@@ -270,6 +268,7 @@ namespace Proyecto.MVVM
         private async Task GraficoProyectos()
         {
             var trabajos = await _trabajoRepository.GetAllAsync();
+            var proyectos = await _proyectoRepository.GetAllAsync(); 
 
             var trabajosAgrupados = trabajos
                 .GroupBy(t => t.ProyectosIdProyecto)
@@ -279,14 +278,21 @@ namespace Proyecto.MVVM
             int totalProyectos = trabajosAgrupados.Count; 
             var valoresHorasTrabajador = new double[totalProyectos];
             var valoresHorasMaquina = new double[totalProyectos];
+            var valoresHorasEstimadas = new double[totalProyectos];
             var labelsProyectos = new string[totalProyectos];
 
             for (int i = 0; i < totalProyectos; i++)
             {
                 var grupo = trabajosAgrupados[i];
+                var idProyecto = grupo.Key;
+
+                var proyecto = proyectos.FirstOrDefault(p => p.IdProyecto == idProyecto);
+
                 valoresHorasTrabajador[i] = grupo.Sum(t => t.HorasTrabajador);
                 valoresHorasMaquina[i] = grupo.Sum(t => t.HorasMaquina);
-                labelsProyectos[i] = "Proyecto " + grupo.Key;
+                valoresHorasEstimadas[i] = proyecto?.HorasEstimadas ?? 0; 
+
+                labelsProyectos[i] = "Proyecto " + idProyecto;
             }
 
             var serieTrabajadores = new ColumnSeries<double>
@@ -303,6 +309,16 @@ namespace Proyecto.MVVM
                 Name = "Horas Máquinas",
                 Fill = new SolidColorPaint(SKColors.Orange),
                 MaxBarWidth = 40
+            };
+
+            var serieEstimadas = new LineSeries<double>
+            {
+                Values = valoresHorasEstimadas,
+                Name = "Presupuesto (Horas Totales)",
+                Stroke = new SolidColorPaint(SKColors.Crimson) { StrokeThickness = 4 },
+                GeometryFill = new SolidColorPaint(SKColors.Crimson),
+                GeometryStroke = new SolidColorPaint(SKColors.Crimson),
+                Fill = null 
             };
 
             serieTrabajadores.PointMeasured += (point) =>
@@ -331,7 +347,7 @@ namespace Proyecto.MVVM
                 visual.SetTransition(animation);
             };
            
-            SeriesProyectos = new ObservableCollection<ISeries> { serieTrabajadores, serieMaquinas };
+            SeriesProyectos = new ObservableCollection<ISeries> { serieTrabajadores, serieMaquinas, serieEstimadas };
 
             XAxesProyectos = new Axis[]
             {
@@ -467,6 +483,8 @@ namespace Proyecto.MVVM
                 var proyectos = await _proyectoRepository.GetAllAsync();
                 var trabajadores = await _trabajadorRepository.GetAllAsync();
                 var maquinas = await _maquinaRepository.GetAllMaquinasAsync();
+                var gastos = await _gastoRepository.GetAllAsync();
+                var facturas = await _facturaRepository.GetAllAsync();
 
 
                 int cantidadActivos = proyectos.Count(p => p.FechaFin == null || p.FechaFin >= DateTime.Now);
@@ -477,9 +495,15 @@ namespace Proyecto.MVVM
                 int cantidadTotalMaquinas = maquinas.Count();
                 int cantidadMaquinasOperativas = maquinas.Count(m => m.IdEstadoNavigation != null && m.IdEstadoNavigation.Descripcion == "En Uso");
 
+                //int cantidadGastosMesActual = gastos.Count(g => g.Fecha.HasValue && g.Fecha.Value.Month == DateTime.Now.Month && g.Fecha.Value.Year == DateTime.Now.Year);
+                //int cantidadFacturasMesActual = facturas.Count(f => f.Fecha.HasValue && f.Fecha.Value.Month == DateTime.Now.Month && f.Fecha.Value.Year == DateTime.Now.Year);
+                int balanceMesActual = (int)(facturas.Where(f => f.Fecha.HasValue && f.Fecha.Value.Month == DateTime.Now.Month && f.Fecha.Value.Year == DateTime.Now.Year).Sum(f => f.Total ?? 0) -
+                                    gastos.Where(g => g.Fecha.HasValue && g.Fecha.Value.Month == DateTime.Now.Month && g.Fecha.Value.Year == DateTime.Now.Year).Sum(g => g.Cantidad ?? 0));
+
                 KpiProyectos = $"{cantidadActivos} Activos";
                 KpiPlantillaActiva = $"{cantidadTrabajadoresActivos} / {cantidadTotalTrabajadores} Activos";
                 KpiMaquinasOperativas = $"{cantidadMaquinasOperativas} / {cantidadTotalMaquinas} Operando";
+                KpiBalance = $"{(balanceMesActual >= 0 ? "+ " : "- ")}{Math.Abs(balanceMesActual):N2} €";
             }
             catch (Exception ex)
             {
@@ -488,10 +512,6 @@ namespace Proyecto.MVVM
             }
         }
 
-        private void CargarKPIsMock()
-        {
-            KpiBalance = "+ 14.500 €";
-        }
         #endregion
     }
 }

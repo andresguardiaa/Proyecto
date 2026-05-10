@@ -1,4 +1,5 @@
-﻿using Proyecto.MVVM;
+﻿using Proyecto.Backend.Modelo;
+using Proyecto.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,13 @@ namespace Proyecto.Dialogos
         private async void diagAgregarProyecto_Loaded(object sender, RoutedEventArgs e)
         {
             await _MVProyecto.Inicializa();
+            DataContext = _MVProyecto;
+        }
+
+        public async Task Inicializa(Backend.Modelo.Proyecto proyecto)
+        {
+            await _MVProyecto.Inicializa();
+            _MVProyecto.proyecto = proyecto;
             DataContext = _MVProyecto;
         }
 

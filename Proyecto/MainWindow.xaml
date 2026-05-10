@@ -48,7 +48,7 @@
                         <Expander Header="Proyectos" IsExpanded="False" Background="Transparent" Width="170" Foreground="White" Style="{StaticResource MaterialDesignExpander}">
                             <ListView ItemsSource="{Binding Path=SubItems}" Foreground="White" Style="{StaticResource MaterialDesignListView}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListViewItem Content="Añadir" Padding="40,10,0,10" x:Name="AgregarProyecto" PreviewMouseLeftButtonUp="AgregarProyecto_PreviewMouseLeftButtonUp"/>
-                                <ListViewItem Content="Listado" Padding="40,10,0,10"/>
+                                <ListViewItem Content="Listado" Padding="40,10,0,10" x:Name="ListadoProyectos" PreviewMouseLeftButtonUp="ListadoProyectos_PreviewMouseLeftButtonUp"/>
                                 <!--<ListViewItem Content="Borrar" Padding="40,10,0,10"/>-->
                             </ListView>
                         </Expander>

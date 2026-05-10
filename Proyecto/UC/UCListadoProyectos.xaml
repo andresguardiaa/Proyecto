@@ -1,24 +1,25 @@
-﻿<UserControl x:Class="Proyecto.UC.UCListadoUsuarios"
+﻿<UserControl x:Class="Proyecto.UC.UCListadoProyectos"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"        
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Proyecto.UC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             x:Name="ucListadoUsuarios"
-             Loaded="ucListadoUsuarios_Loaded">
+             x:Name="listadoProyectos"
+             Loaded="listadoProyectos_Loaded">
     <DockPanel>
         <Grid DockPanel.Dock="Top" Margin="20,10,20,10">
             <StackPanel>
-                <TextBlock Text="Listado de Trabajadores" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="Listado de Proyectos" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
-                        Style="{StaticResource MaterialDesignToolButton}" 
-                        ToolTip="Refrescar lista" 
-                        x:Name="btnRefrescar"
-                        Click="btnRefrescar_Click" 
-                        Foreground="#374151">
+                Style="{StaticResource MaterialDesignToolButton}" 
+                ToolTip="Refrescar lista" 
+                x:Name="btnRefrescar"
+                Click="btnRefrescar_Click" 
+                Foreground="#374151">
                     <materialDesign:PackIcon Kind="Refresh" Width="25" Height="25"/>
                 </Button>
 
@@ -33,49 +34,45 @@
             </StackPanel>
         </Grid>
         <Grid>
-            <DataGrid ItemsSource="{Binding listaTrabajadores}"
-              AutoGenerateColumns="False"
-              CanUserAddRows="False"
-              ColumnWidth="*"
-              SelectedItem="{Binding trabajadorSeleccionado}">
+            <DataGrid ItemsSource="{Binding ListaProyectos}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  ColumnWidth="*"
+                  SelectedItem="{Binding ProyectoSeleccionado}">
+                
+                
+                
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="DNI" Binding="{Binding Dni}" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Nombre y apellidos" IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Nombre}"/>
-                                    <TextBlock Text=" "/>
-                                    <TextBlock Text="{Binding Apellido1}"/>
-                                    <TextBlock Text=" "/>
-                                    <TextBlock Text="{Binding Apellido2}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" IsReadOnly="True"/>
-
-                    <DataGridTemplateColumn Header="Dirección">
+                    <DataGridTextColumn Header="Proyecto" Binding="{Binding Nombre}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Cliente">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Ciudad: " FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Ciudad}"/>
+                                        <TextBlock Text="Nombre: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ClienteIdClienteNavigation.Nombre}"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Calle: " FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Calle}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="CP: " FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Cp}"/>
+                                        <TextBlock Text="Teléfono: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ClienteIdClienteNavigation.Telefono}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Duración">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding FechaInicio, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                    <TextBlock Text=" - "/>
+                                    <TextBlock Text="{Binding FechaFin, StringFormat={}{0:dd/MM/yyyy}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                     <DataGridTemplateColumn Header="Editar">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
@@ -84,7 +81,7 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEditarUsuario" Click="btnEditarUsuario_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent">
+                                <Button x:Name="btnEditarProyecto" Click="btnEditarProyecto_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Editar" Margin="10,0,10,0"/>
                                         <materialDesign:PackIcon Kind="Edit"/>
@@ -94,7 +91,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Dar de Baja">
+                    <DataGridTemplateColumn Header="Finalizar">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -102,16 +99,15 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEliminarUsuario" Click="btnEliminarUsuario_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent" Background="#f54e42">
+                                <Button x:Name="btnEliminarProyecto" Click="btnEliminarProyecto_Click" MaxWidth="200" Foreground="White" BorderBrush="Transparent" Background="#f54e42">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Dar de Baja" Margin="10,0,10,0"/>
-                                        <materialDesign:PackIcon Kind="Trash"/>
+                                        <TextBlock Text="Finalizar Proyecto" Margin="10,0,10,0"/>
+                                        <materialDesign:PackIcon Kind="CloseBold" Margin="0,2,0,0"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

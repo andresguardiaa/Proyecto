@@ -24,6 +24,9 @@ public partial class Proyecto
     [Column("fechaFin", TypeName = "date")]
     public DateTime? FechaFin { get; set; }
 
+    [Column("horasEstimadas")]
+    public int? HorasEstimadas { get; set; }
+
     [Column("cliente_idCliente")]
     public int ClienteIdCliente { get; set; }
 

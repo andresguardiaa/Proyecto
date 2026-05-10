@@ -20,6 +20,7 @@ namespace Proyecto
         private UCListadoUsuarios _uCListadoUsuarios;
         private UCListadoMaquinas _uCListadoMaquinas;
         private UCListadoProyectos _uCListadoProyectos;
+        private UCConfiguracion _uCConfiguracion;
 
         private readonly IServiceProvider _serviceProvider;
 
@@ -34,6 +35,7 @@ namespace Proyecto
             UCListadoUsuarios uCListadoUsuarios,
             UCListadoMaquinas uCListadoMaquinas,
             UCListadoProyectos uCListadoProyectos,
+            UCConfiguracion uCConfiguracion,
             IServiceProvider serviceProvider
             )
         {
@@ -48,6 +50,7 @@ namespace Proyecto
             _uCListadoUsuarios = uCListadoUsuarios;
             _uCListadoMaquinas = uCListadoMaquinas;
             _uCListadoProyectos = uCListadoProyectos;
+            _uCConfiguracion = uCConfiguracion;
 
             CargarDashboard();
         }
@@ -156,12 +159,14 @@ namespace Proyecto
             panelCentral.Children.Add(_uCListadoProyectos);
         }
 
+        private void btnConfiguracion_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (panelCentral != null) panelCentral.Children.Clear();
+            panelCentral.Children.Add(_uCConfiguracion);
+        }
 
         #endregion
 
-        private void btnConfiguracion_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
 
-        }
     }
 }

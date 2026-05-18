@@ -141,7 +141,6 @@ namespace Proyecto.MVVM
         }
         #endregion
 
-
         #region constructor
         public MVDashboard(
             TrabajadorRepository trabajadorRepository, 

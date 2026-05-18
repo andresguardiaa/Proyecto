@@ -35,6 +35,7 @@ namespace Proyecto.UC
             dlg.ShowDialog();
         }
 
+        #region Copia de Seguridad
         private async void btnBackup_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog
@@ -84,5 +85,7 @@ namespace Proyecto.UC
                 }
             }
         }
+
+        #endregion
     }
 }

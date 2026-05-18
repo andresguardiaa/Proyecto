@@ -11,6 +11,7 @@ namespace Proyecto
     /// </summary>
     public partial class MainWindow : Window
     {
+        //variables privadas
         private AgregarUsuario _agregarUsuario;
         private AgregarProyecto _agregarProyecto;
         private AgregarMaquina _agregarMaquina;
@@ -55,6 +56,7 @@ namespace Proyecto
             CargarDashboard();
         }
 
+        //muestra u oculta la opción de configuración según el rol del usuario
         public void ConfigurarPermisos()
         {
             if (SesionGlobal.UsuarioActual != null && SesionGlobal.UsuarioActual.RolIdRol == 1)
@@ -166,7 +168,6 @@ namespace Proyecto
         }
 
         #endregion
-
 
     }
 }
